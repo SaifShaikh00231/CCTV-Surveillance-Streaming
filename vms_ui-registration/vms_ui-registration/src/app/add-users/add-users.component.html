@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VMS</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Add the jQuery UI stylesheet -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <app-settings></app-settings>
+
+    <div class="main">
+
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form action="#" method="POST">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <div class="input-group">
+                    <input type="text" name="first_name" [(ngModel)]="signupForm.first_name" placeholder="First name"
+                        required="">
+                    <i class="material-icons">account_circle</i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="last_name" [(ngModel)]="signupForm.last_name" placeholder="Last name"
+                        required="">
+                    <i class="material-icons">account_circle</i>
+                </div>
+
+                <div class="input-group">
+                    <input type="email" name="email" [(ngModel)]="signupForm.email" placeholder="Email">
+                    <i class="material-icons">email</i>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" name="mobile" [(ngModel)]="signupForm.mobile" placeholder="Phone number">
+                    <i class="material-icons">phone</i>
+                </div>
+
+                <div class="input-group password-input">
+                    <input
+                        type="{{ showPassword ? 'text' : 'password' }}"
+                        name="password"
+                        [(ngModel)]="signupForm.password"
+                        placeholder="Password"
+                        required
+                    />
+                    <i class="material-icons">lock</i>
+                    <i class="material-icons eye-icon" (click)="togglePasswordVisibility()">
+                        {{ showPassword ? 'visibility' : 'visibility_off' }}
+                    </i>
+                </div>
+
+                <div class="input-group password-input">
+                    <input
+                        type="{{ showConfirmPassword ? 'text' : 'password' }}"
+                        name="confirm_password"
+                        [(ngModel)]="signupForm.confirm_password"
+                        placeholder="Confirm password"
+                        required
+                    />
+                    <i class="material-icons">lock</i>
+                    <i class="material-icons eye-icon" (click)="toggleConfirmPasswordVisibility()">
+                        {{ showConfirmPassword ? 'visibility' : 'visibility_off' }}
+                    </i>
+                </div>
+                
+
+                <div class="input-group">
+                    <input type="date" name="dob" id="dob" class="datepicker" [(ngModel)]="signupForm.dob"
+                        placeholder="yyyy/mm/dd" required="">
+
+                </div>
+
+                <label class="checkbox-label">
+                    <input type="checkbox" id="termsCheckbox" name="termsCheckbox"
+                        [(ngModel)]="signupForm.termsCheckbox" required>
+                    I agree to the&nbsp;<a href="#" name="terms">terms & conditions</a>
+                </label>
+
+                <button type="button" class="button signup-button" (click)="register()">Sign-Up</button>
+            </form>
+        </div>
+        <div class="login">
+            <form action="#" method="POST" (submit)="login($event)">
+                <label aria-hidden="true"></label>
+                <label for="chk" aria-hidden="true" (click)="hideForgotPassword()"
+                    style="margin-top: -45px;font: size 20px;">Sign in</label>
+                <div class="input-group">
+                    <input type="text" name="identifier" [(ngModel)]="loginForm.identifier"
+                        placeholder="Email or Phone number" required="">
+                    <i class="material-icons">perm_phone_msg</i>
+                </div>
+                <div class="input-group">
+                    <input type="password" name="password" [(ngModel)]="loginForm.password" placeholder="Password"
+                        required="">
+                    <i class="material-icons">key</i>
+                </div>
+                <button type="button" (click)="toggleForgotPassword()">Forgot Password?</button>
+                <button (click)="login($event)">Login</button>
+            </form>
+        </div>
+
+        <div class="forgot-password-card" *ngIf="showForgotPassword">
+
+            <label aria-hidden="true" style="font-size: 20px;margin-top: 20px;color: #286fdb;">Forgot-Password</label>
+
+            <label for="chk" aria-hidden="true" class="back-label back-button" (click)="goBackToLogin()">Back to Log-in
+                page</label>
+            <div class="input-group">
+                <input type="text" name="email" [(ngModel)]="forgotPasswordForm.email" placeholder="Enter your email"
+                    required="" style="margin-top:80px;">
+                <i class="material-icons">email</i>
+            </div>
+            <button type="button"  class="button3" style="margin-top: 40px;">Submit</button>
+            <div *ngIf="linkSent" style="color: black; margin-top: 20px;">Link is successfully sent to your Mail</div>
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    </div>
+
+</body>
+
+</html>

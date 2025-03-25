@@ -1,0 +1,485 @@
+ /* CSS Reset */
+ html,
+ body,
+ div,
+ span,
+ applet,
+ object,
+ iframe {
+     margin: 0;
+     padding: 0;
+     border: 0;
+     vertical-align: baseline;
+ }
+
+ html,
+ body {
+     height: 100%;
+     margin: 0;
+     padding: 0;
+
+ }
+
+ body {
+     display: flex;
+     font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+     background: url('/assets/images/camera_icon.png') no-repeat left/cover;
+     background-size: 100% 100%;
+     position: relative;
+
+
+ }
+
+ /* Media Queries */
+ @media screen and (max-width: 768px) {
+
+     /* Adjust styles for smaller screens */
+     .form-container {
+         max-height: 100vh;
+         max-width: 90vw;
+         height: auto;
+         width: auto;
+         border-radius: 10px;
+         position: fixed;
+  
+         top: calc(40%); /* Assuming the height of your navbar is 45px */
+         left: 55%;
+         transform: translate(-50%, -50%);
+     }
+
+ }
+
+ @media screen and (min-width: 1200px) {
+
+     /* Adjust styles for larger screens */
+     .form-container {
+         margin-top: 15%;
+     }
+ }
+.or{
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+ .form-container {
+     margin-top: 10%;
+     margin-left: auto;
+     margin-right: auto;
+     margin-bottom: 4vh;
+     height: fit-content;
+     max-width: 450px;
+     /* Use max-width instead of width */
+     width: 100%;
+     /* Ensure the form takes the full width available */
+     background-color: #fff;
+     border: 1px solid #f6f9fd;
+     padding: 15px;
+     border-radius: 10px;
+     box-shadow: 0 8px 16px #1a488e14;
+ }
+
+ .form-container h2 {
+     color: rgb(22, 22, 22);
+     margin-bottom: 20px;
+     text-align: center;
+     font-size: 24px;
+     /* Increased font size for the heading */
+     font-weight: bold;
+     /* Bold heading */
+     /* Add shadow and box effect with adjusted color and alpha */
+     box-shadow: 5px 10px 20px rgba(40, 111, 219, .16);
+     padding: 5px;
+ }
+
+
+ .form-group {
+     margin-bottom: 5px;
+     font-size: .921em;
+
+     border-radius: 6px;
+     background-color: #fff;
+     box-shadow: 0 8px 16px #1a488e14;
+
+     border: 1px solid #f6f9fd;
+ }
+
+
+ label {
+     display: flex;
+
+ }
+
+
+ .date-group {
+     display: flex;
+     align-items: center;
+     margin-bottom: 15px;
+     /* Add margin to separate from the previous form group */
+ }
+
+ .date-group label {
+     margin-left: 5px;
+     margin-right: 10px;
+     white-space: nowrap;
+     /* Prevent label from wrapping */
+     color: #6b6666f1;
+ }
+
+
+
+
+ input[type="text"],
+ input[type="username"] {
+     width: 100%;
+     /* Set width to 100% to fill the container */
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+ }
+
+ input[type="password"] {
+     width: 103%;
+     /* Set width to 100% to fill the container */
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+ }
+
+
+ input[type="port"] {
+     width: 100%;
+     /* Set width to 100% to fill the container */
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+ }
+
+ input[type="serial_number"] {
+     width: 100%;
+     /* Set width to 100% to fill the container */
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+ }
+
+ .date-group input[type="date"] {
+     width: 100%;
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+     color: #6b6666f1;
+ }
+
+ select {
+     width: 100%;
+     /* Set width to 100% to fill the container */
+     padding: 12px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+     font-size: 13px;
+     text-decoration: none;
+     color: #6b6666f1;
+     /* Set the color for the select element text */
+     padding-left: 8px;
+ }
+
+
+
+ .button-container {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+
+
+ }
+
+ .button-container button,
+ .button-container #cancel-button {
+     margin: 0;
+     flex: 1;
+     height: 40px;
+     padding: 10px;
+     background: rgb(22, 22, 22);
+     color: white;
+     border: none;
+     cursor: pointer;
+     border-radius: 5px;
+     transition: background 0.3s ease;
+
+
+ }
+
+ .button-container button:active,
+ .button-container #cancel-button:active {
+     box-shadow: 0 1px rgb(22, 22, 22);
+     transform: translateY(1px);
+ }
+
+ .button-container #cancel-button {
+     background-color: rgb(22, 22, 22);
+     margin-top: 10px;
+     border-radius: 5px;
+     transition: background 0.3s ease;
+
+ }
+
+ .button-container button:first-child {
+     margin-right: 10px;
+     margin-top: 10px;
+ }
+
+
+ .button-container button:first-child {
+     margin-right: 10px;
+     margin-top: 10px;
+ }
+
+ .radio-container {
+     display: flex;
+     align-items: center;
+ }
+
+ .radio-container label {
+     margin-left: 5px;
+ }
+
+ .form-group {
+     margin-bottom: 5px;
+     font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+ }
+
+ .row {
+     display: flex;
+     flex-wrap: wrap;
+ }
+
+ .col {
+     flex: 1;
+     margin-right: 5px;
+     /* Adjust margin between inputs */
+ }
+
+ .form-group label,
+ .form-group input,
+ .form-group select,
+ .form-group textarea,
+ .date-group label,
+ .date-group input,
+ .button-container button,
+ .button-container #cancel-button {
+     font-size: 13px;
+
+ }
+
+ /* Optionally, you can adjust the font size for specific input types */
+ input[type="text"],
+ input[type="username"],
+ input[type="password"],
+ input[type="port"],
+ input[type="serial_number"],
+ .date-group input[type="date"],
+ select {
+     font-size: 13px;
+     color: #6b6666f1;
+
+ }
+
+ /* Adjusting font size for radio buttons */
+ .radio-container label {
+     font-size: 13px;
+ }
+
+ .form-group label {
+     font-size: 13px !important;
+     /* Add !important to override other styles */
+ }
+
+ .add-form {
+     position: absolute;
+     margin-top: 15%;
+     left: 82%;
+     transform: translate(-50%, -50%);
+     width: 250px;
+     background-color: #fff;
+     border: 1px solid #f6f9fd;
+     padding: 15px;
+     border-radius: 10px;
+     box-shadow: 0 8px 16px #1a488e14;
+     z-index: 2;
+     text-align: center;
+ }
+
+ .add-form h2 {
+     color: #000000;
+     margin-bottom: 20px;
+     text-align: center;
+     font-size: 24px;
+     /* Increased font size for the heading */
+     font-weight: bold;
+     /* Bold heading */
+     /* Add shadow and box effect with adjusted color and alpha */
+     box-shadow: 5px 10px 20px rgba(40, 111, 219, .16);
+     padding: 5px;
+ }
+
+ .add-form label {
+     display: inline-block;
+     width: 40%;
+     /* Adjust the width of the label */
+     text-align: center;
+     margin-right: 5%;
+ }
+
+ .add-form input {
+     width: 150px;
+     /* Set a fixed width for the input field */
+     padding: 6px;
+     border-radius: 6px;
+     background-color: #fff;
+     box-shadow: 0 8px 16px #1a488e14;
+     border: 1px solid #f6f9fd;
+     font-size: 13px;
+     text-decoration: none;
+     color: #6b6666f1;
+     box-sizing: border-box;
+     display: inline-block;
+ }
+
+ .add-form select {
+     width: 150px;
+     /* Set the same fixed width for the select dropdown */
+     padding: 6px;
+     border-radius: 6px;
+     background-color: #fff;
+     box-shadow: 0 8px 16px #1a488e14;
+     border: 1px solid #f6f9fd;
+     font-size: 13px;
+     text-decoration: none;
+     color: #6b6666f1;
+     box-sizing: border-box;
+     display: inline-block;
+ }
+
+
+ .add-form .form-row {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+     /* Align items vertically in the flex container */
+     margin-bottom: 10px;
+     /* Adjust margin as needed */
+ }
+
+ .add-form button {
+     width: 35%;
+     /* Adjusted width for buttons */
+     padding: 6px;
+     border: none;
+     border-radius: 4px;
+     cursor: pointer;
+     transition: background-color 0.3s ease-in-out;
+     margin-top: 10px;
+     /* Provide space between buttons */
+     font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+ }
+
+ .add-form button#add-button {
+     background: rgb(22, 22, 22);
+     color: white;
+     margin-right: 7%;
+     margin-left: 5%;
+
+ }
+
+ .add-form button#cancel-add-button {
+     background: rgb(22, 22, 22);
+     color: white;
+
+ }
+
+
+ .hidden-value {
+     display: none;
+ }
+
+ .add-option-button {
+     background: rgb(22, 22, 22);
+     color: white;
+     background: rgb(22, 22, 22);
+     border: 1px solid;
+     outline: none;
+     padding: 6px;
+     text-align: center;
+     align-items: center;
+     justify-content: center;
+     display: flex;
+     font-size: 16px;
+     cursor: pointer;
+     border-radius: 4px;
+     right: 4%;
+     margin-top: 5%;
+     position: absolute;
+     font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+ }
+
+ .form-group.max-width-50 {
+     display: flex;
+     max-width: 100%;
+     text-align: left;
+ }
+
+ .form-group.max-width-50 select {
+     width: 100%;
+     padding: 10px;
+     box-sizing: border-box;
+     border-radius: 5px;
+     border: 1px solid #f6f9fd;
+     text-align: left;
+ }
+
+ .form-group.max-width-50 select option:not(:first-child) {
+     text-align: left;
+     white-space: nowrap;
+ }
+
+ .input-group {
+     position: relative;
+ }
+
+ .input-group i {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     margin-left: 10px;
+     /* Adjust this value based on your preference */
+     color: #aaa;
+     /* Adjust the color of the icon */
+ }
+
+ .input-group input,
+ .input-group select {
+     padding-left: 35px;
+     /* Adjust this value to make space for the icon */
+
+ }
+
+
+ .material-icons.grid {
+     font-size: 15px;
+ }
+
+ .password-input .eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 5px; /* Adjust the right spacing as needed */
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+   
+}

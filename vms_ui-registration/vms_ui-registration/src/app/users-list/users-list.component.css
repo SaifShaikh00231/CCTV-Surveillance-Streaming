@@ -1,0 +1,278 @@
+* {
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  
+.overview {
+    display: flex;
+    flex-direction: column;
+    /* Adjusted to a column layout */
+    width: 100%;
+    margin-right: 50px;
+    margin-left: 63px;
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+.data-table {
+    flex: 1 1 calc(50% - 50px);
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.data-table h2 {
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+    margin-left: 0%;
+    padding: 12px;
+    font-size: 24px;
+    font-weight: normal;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    /* Enable flex layout for the h2 element */
+    justify-content: space-between;
+    /* Space content evenly */
+    align-items: center;
+    /* Align items vertically */
+}
+
+.data-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    padding: 15px;
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table td {
+    padding: 9px;
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+.data-table th {
+    background-color: #f5f5f5;
+    font-weight: 500;
+}
+
+/* Optional: Add hover effect for better user interaction */
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+@media (max-width: 768px) {
+    .data-table {
+        flex: 1 0 100%;
+        margin-right: 0;
+    }
+}
+
+
+.data-table button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    height: 35px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.data-table button#view-button {
+    background: rgb(22, 22, 22);
+    color: white;
+    position: relative;
+    margin-right: 120%;
+    display: flex;
+
+}
+
+
+/* Add/Edit form styling */
+.edit-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    background-color: #fff;
+    border: 1px solid #f6f9fd;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px #1a488e14;
+    z-index: 2;
+    text-align: center;
+}
+
+.edit-form h2 {
+    color: #000000;
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 24px;
+    /* Increased font size for the heading */
+    font-weight: bold;
+    /* Bold heading */
+    /* Add shadow and box effect with adjusted color and alpha */
+    box-shadow: 5px 10px 20px rgba(40, 111, 219, .16);
+    padding: 5px;
+}
+
+.edit-form label {
+    display: inline-block;
+    width: 30%;
+    /* Adjust the width as needed */
+    margin-bottom: 15px;
+    text-align: center;
+    /* Align labels on the right side */
+    margin-right: 5%;
+    /* Add some right margin to separate label and select */
+}
+
+.edit-form select {
+    width: 50%;
+    /* Adjusted width for select */
+    padding: 6px;
+    box-sizing: border-box;
+    border-radius: 6px;
+    background-color: #fff;
+    box-shadow: 0 8px 16px #1a488e14;
+    border: 1px solid #f6f9fd;
+    font-size: 13px;
+    text-decoration: none;
+    color: #6b6666f1;
+    /* Set the color for the select element text */
+    padding-left: 6px;
+    display: inline-block;
+}
+
+.edit-form button {
+    width: 25%;
+    /* Adjusted width for buttons */
+    padding: 6px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    margin-top: 10px;
+    /* Provide space between buttons */
+}
+
+.edit-form button#save-button {
+    background: rgb(22, 22, 22);
+    color: white;
+    margin-right: 7%;
+    margin-left: 2%;
+}
+
+.edit-form button#cancel-button {
+    background: rgb(22, 22, 22);
+    color: white;
+}
+
+.view-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.icon2 {
+    color: #030303;
+    fill: #030303;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    margin-left: 40%;
+    position: relative;
+    display: flex;
+}
+
+.search-results {
+    margin-top: 10px;
+}
+
+.search-results div {
+    background-color: yellow;
+    margin-bottom: 1px;
+}
+
+.search-bar {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 8%;
+
+    /* Add styling to the search input */
+    input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        /* Use a lighter border color */
+        border-radius: 25px;
+        /* Use a higher border-radius for a more oval-like shape */
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        /* Add a subtle box shadow for depth */
+        width: 250px;
+        color: #333;
+        transition: all 0.3s ease;
+        outline: none;
+        /* Remove the outline on focus */
+    }
+
+    /* Style the placeholder text */
+    input::placeholder {
+        color: #999;
+    }
+
+    /* Add styling to the search icon */
+    i {
+        position: relative;
+        right: 35px;
+        color: #797979;
+        cursor: pointer;
+        transition: color 0.3s ease;
+    }
+
+    /* Add hover effect for the input and icon */
+    &:hover {
+        input {
+            background-color: #ebebeb;
+            /* Lighten the background on hover */
+        }
+
+        i {
+            color: #333;
+        }
+    }
+}

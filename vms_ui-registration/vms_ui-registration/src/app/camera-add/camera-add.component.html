@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Camera Add</title>
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+
+
+
+    <div class="form-container" #formContainer>
+
+        <h2>Add Camera</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="material-icons">photo_camera</i>
+                    <input type="text" name="cameraname" placeholder="Camera Name                                                   
+     - - Title case only" [(ngModel)]="formData.cameraname" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="material-icons">settings</i>
+                    <select id="model" name="model" [(ngModel)]="formData.model_name" required="">
+                        <option value="" disabled selected>Select Model</option>
+                        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="material-icons">videocam</i>
+                    <select id="camera-type" name="cameraType" (change)="onCameraTypeChange($event)"
+                        [(ngModel)]="selectedCameraType" required>
+                        <option value="" disabled selected>Select Camera Type</option>
+                        <option *ngFor="let type of cameraTypes" [value]="type">{{ type }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Conditionally show the IP Camera fields -->
+            <div class="form-group" *ngIf="showcamera_ip_addressInput">
+                <div class="input-group">
+                    <i class="material-icons">language</i>
+                    <input type="text" name="camera_ip_address" placeholder="IP Address / Domain Name"
+                        [(ngModel)]="formData.camera_ip_address" required="">
+                </div>
+            </div>
+            <div class="form-group" *ngIf="showcamera_ip_addressInput">
+                <div class="input-group">
+                    <i class="material-icons">grid_view</i>
+                    <select id="channel" name="channel" [(ngModel)]="formData.channel" required>
+                        <option value="" disabled selected>Select Channel</option>
+                        <option *ngFor="let channel of channels" [value]="channel">{{ channel }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group" *ngIf="showcamera_ip_addressInput">
+                <div class="input-group">
+                    <i class="material-icons">pin</i>
+                    <input type="serial_number" name="serial_number" placeholder="Serial Number"
+                        [(ngModel)]="formData.serial_number" required="">
+                </div>
+            </div>
+            <div class="form-group" *ngIf="showcamera_ip_addressInput">
+                <div class="input-group">
+                    <i class="material-icons">dns</i>
+                    <input type="port" id="port" name="port" placeholder="Port" [(ngModel)]="formData.port" required="">
+                </div>
+            </div>
+            <!-- Conditionally show the protocol dropdown based on the selected connection type -->
+            <div class="form-group" *ngIf="showProtocolDropdown">
+                <div class="input-group">
+                    <i class="material-icons">podcasts</i>
+                    <select id="protocol" name="protocol" [(ngModel)]="formData.protocol" required>
+                        <option value="" disabled selected>Select Protocol</option>
+                        <option *ngFor="let protocol of protocols" [value]="protocol">{{ protocol }}</option>
+                    </select>
+                </div>
+            </div>
+            <div *ngIf="showcamera_ip_addressInput">
+            <hr > <div class="or"><span >OR </span></div>
+            <div class="form-group" *ngIf="showcamera_ip_addressInput">
+                <div class="input-group">
+                    <i class="material-icons">link</i>
+                    <input type="port" id="port" name="link" placeholder="Link" [(ngModel)]="formData.link" required="">
+                </div>
+            </div>
+            <hr >
+        </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <i class="material-icons">location_on</i>
+                    <select id="location" name="location" [(ngModel)]="formData.location" required>
+                        <option value="" disabled selected>Select Location</option>
+                        <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+                    </select>
+                </div>
+            </div>
+           
+            
+            <div class="form-group">
+                <div class="row">
+                    <div class="col">
+                        <div class="input-group">
+                            <i class="material-icons">account_circle</i>
+                            <input type="username" id="username" name="username" placeholder="Username"
+                                [(ngModel)]="formData.username" required="">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="input-group password-input">
+                            <i class="material-icons">key</i>
+                            <input type="{{ showPassword ? 'text' : 'password' }}" id="password" name="password" placeholder="Password" [(ngModel)]="formData.password" required="">
+                            <i class="material-icons eye-icon" (click)="togglePasswordVisibility()">
+                                {{ showPassword ? 'visibility' : 'visibility_off' }}
+                            </i>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+
+
+            <div class="form-group date-group">
+                <label for="installation-date">Installed On:</label>
+                <input type="date" id="installation-date" name="installation-date"
+                    [(ngModel)]="formData.installationDate" required="">
+            </div>
+            <div class="button-container">
+                <button type="submit">Add Camera</button>
+                <button type="button" id="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="showAddForm" class="add-form">
+        <h2>Add Camera Options</h2>
+        <form (submit)="onAddSubmit()">
+            <div class="form-row">
+                <label for="new_camera_type">Camera Type</label>
+                <input type="text" id="camera_type" name="camera_type" [(ngModel)]="formDataoptions.camera_type"
+                    required="">
+            </div>
+            <div class="form-row">
+                <label for="new_model">Model</label>
+                <input type="text" id="model_name" name="model_name" [(ngModel)]="formDataoptions.model_name"
+                    required="">
+            </div>
+            <div class="form-row">
+                <label for="new_location">Location</label>
+                <input type="text" id="location" name="location" [(ngModel)]="formDataoptions.location" required="">
+            </div>
+
+            <div class="form-row">
+                <label for="new_camera_type">Channels</label>
+                <input type="text" id="channel" name="channel" [(ngModel)]="formDataoptions.channel" required="">
+            </div>
+            <div class="form-row">
+                <label for="protocol">Protocol</label>
+                <input type="text" id="protocol" name="protocol" [(ngModel)]="formDataoptions.protocol" required="">
+            </div>
+
+            <!-- Add other form fields as needed -->
+
+            <div class="button-container">
+                <button type="submit" id="add-button">Add</button>
+                <button type="button" (click)="cancelAdd()" id="cancel-add-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <button type="submitted" id="add-option-button" (click)="addOptions()" class="add-option-button"
+        *ngIf="hasPermission('delete_camera')">
+        <i class="fas fa-plus" style="margin-right: 10px;margin-bottom: 3px;"> </i> Add Options </button>
+
+</body>
+
+</html>

@@ -1,0 +1,234 @@
+* {
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  }
+  
+  html,
+  body {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    z-index: 100;
+
+  }
+
+.container {
+    display: flex;
+    width: 40%;
+    margin-top: 10%;
+    margin-left: 28%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.profile {
+    display: flex;
+    /* Add this to use flexbox */
+    flex-direction: column;
+    /* Align items vertically */
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 35%;
+    /* Adjust the width as needed */
+    background-color: #33b5e5;
+    /* Set the background color to blue */
+    color: #fff;
+    /* Set the text color to white */
+    padding: 1rem;
+    /* Add padding for better readability */
+    
+}
+
+.profile i {
+    margin-bottom: 4%;
+    /* Adjust the margin as needed */
+}
+
+.edit-icon {
+    margin-top: 5px;
+    /* Adjust the margin as needed */
+}
+
+.projects {
+    flex: 0 0 58%;
+    text-align: center;
+    margin: auto;
+    /* Add this to center the section horizontally */
+
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+    margin-top: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+
+}
+
+h2 {
+    font-size: 24px;
+    justify-content: center;
+
+    align-items: center;
+}
+
+.section-heading h2 {
+    font-size: 24px;
+    justify-content: center;
+    margin-right: 10%;
+    align-items: center;
+}
+
+h4 {
+    font-weight: 500;
+}
+
+.contact-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 40px;
+    padding-left: 60px;
+
+}
+
+
+.info {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    /* Align the text to the left */
+}
+
+.info p {
+    margin-bottom: 0.5rem;
+    color: #6b6666f1;
+}
+
+.info a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.info a:hover {
+    text-decoration: underline;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    /* Add some bottom margin for separation */
+}
+
+.bar {
+    width: 30%;
+    /* Adjust the width of the bar as needed */
+    height: 2px;
+    background-color: rgb(22, 22, 22);
+    /* Set the background color to blue */
+    margin: 0 auto;
+    /* Center the bar */
+    margin-left: 30%;
+}
+
+.info-pair {
+    display: flex;
+    flex-direction: column;
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+    /* Other styles remain unchanged */
+}
+
+
+
+.info-pair h4,
+.info-pair p {
+    margin: 0;
+    white-space: nowrap;
+}
+
+.info-pair p {
+    margin: 0 0 30px;
+    /* Adjust the margin-bottom as needed */
+    white-space: nowrap;
+}
+
+.mobile {
+    margin-left: auto;
+    /* Push Mobile No label to the right */
+}
+
+.no-padding {
+    padding-left: 0;
+}
+
+.input-field {
+    width: 90%;
+    /* Set the desired fixed width */
+    padding: 6px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 0.1rem;
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+/* Style for focused input fields */
+.input-field:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Adjustments for smaller screens or mobile views */
+@media screen and (max-width: 600px) {
+    .contact-line {
+        flex-direction: column;
+        /* Stack items vertically on smaller screens */
+        align-items: flex-start;
+        /* Align items to the left */
+        padding-right: 0;
+        /* Reset right padding for smaller screens */
+    }
+
+    .mobile {
+        margin-left: 0;
+        /* Reset margin for Mobile No label on smaller screens */
+    }
+}
+
+/* Style for submit/edit button (adjust as needed) */
+.submit-button {
+    background-color: rgb(22, 22, 22);
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 1rem;
+    /* Add top margin to separate from the form */
+    margin-bottom: 3%;
+    margin-right: 6%;
+}
+
+.submit-button:hover {
+    background-color: rgb(22, 22, 22);
+}

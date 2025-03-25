@@ -1,0 +1,93 @@
+.tabs {
+  display: flex;
+  margin-top: 4%;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+  padding: 0.75rem;
+  border-radius: 99px; /* just a high number to create pill effect */
+  margin-left: 3%;
+  padding-left: 150px;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 54px;
+  width: 200px;
+  font-size: 1.25rem;
+  font-weight: 500;
+  border-radius: 99px; /* just a high number to create pill effect */
+  cursor: pointer;
+  transition: color 0.15s ease-in;
+  margin-left: 5%;
+  z-index: 100;
+}
+
+.tab-link.active   + .glider {
+  background-color: #33b5e5;
+  color: #ffffff;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + label {
+  color: #ffffff;
+}
+
+input[type="radio"]:checked + label > .notification {
+  background-color: #33b5e5;
+  color: #fff;
+}
+
+
+
+.glider {
+  position: absolute;
+  height: 54px;
+  width: 200px;
+  background-color: #33b5e5;
+  z-index: 1;
+  border-radius: 99px; /* just a high number to create pill effect */
+  transition: 0.25s ease-out;
+  
+}
+
+.tab-link.active {
+  color: white;
+  background-color: #33b5e5;
+}
+
+.glider {
+  position: absolute;
+  bottom: 0;
+  height: 3px; /* Adjust height as needed */
+  background-color: #33b5e5;
+  transition: transform 0.3s ease-in-out;
+  z-index: 10;
+  width:100px;
+  margin-left: 6%;
+
+
+  border-radius: 69px; /* just a high number to create pill effect */
+}
+
+
+.tabs a {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  height: 80%;
+  min-width: 50px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 1s ease;
+  justify-content: end;
+  align-items: center;
+  text-align: center;
+  margin-left: 4%;
+  color: black;
+}

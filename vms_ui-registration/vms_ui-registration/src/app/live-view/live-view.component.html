@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Camera</title>
+
+
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+
+  <div class="live-view-container">
+    <div class="grid-container"
+      [ngStyle]="{'grid-template-columns': 'repeat(' + gridColumns + ', 1fr)', 'grid-template-rows': 'repeat(' + gridRows + ', 1fr)'}">
+      <!-- Iterate over cameras -->
+      <ng-container *ngFor="let camera of devices; let cameraIndex = index">
+        <!-- Check if the camera is an IP camera -->
+        <ng-container *ngIf="camera[2] === 'camera_ip'">
+          <!-- Iterate over channels for each IP camera -->
+          <ng-container *ngFor="let channel of getChannelsForCamera(camera); let channelIndex = index">
+            <!-- Display the channel -->
+            <div class="image-container" id="container-{{ cameraIndex }}-{{ channelIndex }}"
+              [ngStyle]="{'width': containerWidth + 'px', 'height': containerHeight + 'px'}"
+              [class.selected]="isSelectedCameraChannel(cameraIndex, channelIndex)"
+              (click)="selectCameraChannel(cameraIndex, channelIndex)"
+              (contextmenu)="showContextMenu($event, cameraIndex, channelIndex)" [attr.data-camera-index]="cameraIndex"
+              [attr.data-channel-index]="channelIndex">
+              <!-- ... (rest of the container content) ... -->
+              <p class="grid-number">&nbsp;Lat:&nbsp; {{ camera[14] }}&nbsp; Long:&nbsp; {{ camera[15] }}&nbsp;Alt:&nbsp; {{ camera[16] }} </p>
+              <span *ngIf="recording && selectedCameraIndex === cameraIndex && selectedChannelIndex === channelIndex"
+                class="recording-icon">
+                <i class="fas fa-circle"></i>
+                <span class="elapsed-time">{{ formatElapsedTime() }}</span>
+              </span>
+              <img [src]="getRtspLink(cameraIndex, channelIndex)">
+              <!-- Button Palette -->
+              <div class="button-palette" *ngIf="isSelectedCameraChannel(cameraIndex, channelIndex)"
+                (click)="selectCameraChannel(cameraIndex, channelIndex)">
+                <button mat-button class="button" [class.recording]="recording" (click)="startRecording()"
+                  aria-label="Start Recording">
+                  <mat-icon>fiber_manual_record</mat-icon>
+                </button>
+                <button mat-button class="button" (click)="captureImage()"
+                  [class.capture-animation]="showCaptureIconAnimation" aria-label="Capture Image">
+                  <mat-icon>camera</mat-icon>
+                </button>
+                <button mat-button class="button stop-recording" (click)="stopRecording()"
+                  [class.stop-recording]="stopRecord" aria-label="Stop Recording">
+                  <mat-icon>stop</mat-icon>
+                </button>
+                <button mat-button class="button" aria-label="Schedule" data-testid="schedule-button"
+                  (click)="scheduleRecording()">
+                  <mat-icon class="icon">calendar_month</mat-icon>
+                </button>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+        <!-- Display non-IP cameras as single units -->
+        <ng-container *ngIf="camera[2] !== 'camera_ip'">
+          <div class="image-container" id="container-{{ cameraIndex }}-0"
+            [ngStyle]="{'width': containerWidth + 'px', 'height': containerHeight + 'px'}"
+            [class.selected]="isSelectedCameraChannel(cameraIndex, 0)" (click)="selectCameraChannel(cameraIndex, 0)"
+            (contextmenu)="showContextMenu($event, cameraIndex, 0)">
+            <p class="grid-number">Camera {{ cameraIndex + 1 }}</p>
+            <div class="button-palette" *ngIf="isSelectedCameraChannel(cameraIndex, 0)"
+              (click)="selectCameraChannel(cameraIndex, 0)">
+
+              <button mat-button class="button" [class.recording]="recording" (click)="startRecording()"
+                aria-label="Start Recording">
+                <mat-icon>fiber_manual_record</mat-icon>
+              </button>
+              <button mat-button class="button" (click)="captureImage()"
+                [class.capture-animation]="showCaptureIconAnimation" aria-label="Capture Image">
+                <mat-icon>camera</mat-icon>
+              </button>
+
+              <button mat-button class="button stop-recording" (click)="stopRecording()"
+                [class.stop-recording]="stopRecord" aria-label="Stop Recording">
+                <mat-icon>stop</mat-icon>
+              </button>
+
+              <button mat-button class="button" aria-label="Schedule" data-testid="schedule-button"
+                (click)="scheduleRecording()">
+                <mat-icon class="icon">calendar_month</mat-icon>
+              </button>
+
+
+
+              <!-- You may add additional content for non-IP cameras -->
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <!-- Display an empty container by default if no devices are present -->
+      <div class="image-container" *ngIf="devices.length === 0 && !webcamActive"
+        [ngStyle]="{'width': containerWidth + 'px', 'height': containerHeight + 'px'}">
+      </div>
+    </div>
+  </div>
+
+
+
+  <div *ngIf="showScheduleForm" class="schedule-form">
+    <h2>Schedule Recording</h2>
+    <form (submit)="onScheduleSubmit()">
+      <div class="form-row date-group">
+        <label for="start_datetime">Start Date and Time</label>
+        <input type="datetime-local" id="start_datetime" name="start_datetime" [(ngModel)]="startDateTime">
+      </div>
+      <div class="form-row date-group">
+        <label for="end_datetime">End Date and Time</label>
+        <input type="datetime-local" id="end_datetime" name="end_datetime" [(ngModel)]="endDateTime">
+      </div>
+
+      <div class="button-container1">
+        <button type="submit" id="schedule-recording-button">Schedule</button>
+        <button type="button" (click)="cancelSchedule()" id="cancel-schedule-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+</body>
+
+</html>

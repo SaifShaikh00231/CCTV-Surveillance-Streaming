@@ -1,0 +1,496 @@
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  background-size: 100% 100%;
+  position: relative;
+}
+
+.live-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3%;
+  /* Adjust the top margin */
+  width: 100%;
+  /* Adjust the width to accommodate the margin change */
+  max-height: calc(105vh);
+  /* Adjust max-height as needed */
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(150px, auto);
+  gap: 5px;
+  /* Adjust gap between grid items as needed */
+  max-height: calc(3 * (275px));
+  overflow-y: auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  background-color: #181515e4;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+
+/* Add a bullet/pointer style */
+span {
+  font-size: 24px;
+  display: inline-block;
+  width: 0px;
+  vertical-align: middle;
+  transition: 1s ease-in-out;
+}
+
+.menu li {
+  height: 50px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.menu li i {
+  min-width: 60px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+  color: #000000;
+}
+
+li span {
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: .3s;
+  color: #000000;
+}
+
+
+
+li a {
+  list-style: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-left: 105%;
+  margin-top: -8%;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 1s ease;
+  color: #000000;
+}
+
+li a:hover .icon,
+li a:hover .text {
+  color: #000000;
+  width: 160px;
+}
+
+.sidebar.close.li a:hover .text {
+  opacity: 0;
+}
+
+span.text {
+  overflow: visible;
+  /* Hide overflowing content */
+}
+
+
+.button-container {
+  position: fixed;
+  bottom: 20px;
+  /* Adjust the distance from the bottom */
+  margin-left: 52%;
+  /* Center horizontally */
+  transform: translateX(-50%);
+  /* Center the container horizontally */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 0;
+}
+
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  cursor: pointer;
+  color: #0e0e0f;
+  border: none;
+  border-radius: 25px;
+  background: none;
+}
+
+.button.recording mat-icon,
+.button.stop-recording mat-icon,
+.button.capture-animation mat-icon {
+  color: #ff0000;
+  /* Red color for the icon */
+}
+
+.button.capture-animation mat-icon {
+  color: #33aaff;
+  /* White color for the icon during animation */
+}
+
+.button mat-icon {
+  margin-right: 8px;
+  margin-top: -2%;
+  font-size: 20px;
+  transition: color 0.3s ease;
+  /* Add transition for color change */
+}
+
+.button.capture-animation mat-icon {
+  transition: color 0.2s ease;
+  /* Add transition for color change */
+}
+
+.button:hover mat-icon {
+  background-color: transparent !important;
+}
+
+
+.image-container {
+  width: 100%;
+  height: 100%;
+  background-color: #181515e4;
+  cursor: pointer;
+  /* Add cursor pointer to indicate it's clickable */
+}
+
+.image-container.selected {
+  border: 2px solid #33aaff;
+  /* Change the color to your desired selection color */
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  /* Add a subtle box shadow */
+}
+
+
+.image-container {
+  position: relative;
+}
+
+.grid-number {
+  position: absolute;
+  margin-top: 0.3%;
+  margin-left: 5%;
+  color: white;
+  font-size: 01rem;
+  z-index: 2;
+}
+.grid-number2 {
+  position: absolute;
+  margin-top: 0.3%;
+  margin-left: 63%;
+  color: white;
+  font-size: 1rem;
+  z-index: 2;
+}
+
+.recording-icon {
+  position: absolute;
+  margin-top: 0.3%;
+  margin-left: 90%;
+  display: flex;
+  align-items: center;
+  color: #ff0000;
+  /* Red color for the icon */
+  font-size: 8px;
+  /* Adjust the font size to fit within the container */
+  z-index: 2;
+  /* Ensure the icon is above other elements */
+}
+
+
+.elapsed-time {
+  margin-left: 4px;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+
+.schedule-form {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
+  background-color: #fff;
+  border: 1px solid #f6f9fd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px #1a488e14;
+  z-index: 2;
+  text-align: center;
+}
+
+.schedule-form h2 {
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  /* Increased font size for the heading */
+  font-weight: bold;
+  /* Bold heading */
+  /* Add shadow and box effect with adjusted color and alpha */
+  box-shadow: 5px 10px 20px rgba(40, 111, 219, .16);
+  padding: 5px;
+}
+
+
+.schedule-form label {
+  display: inline-block;
+  width: 30%;
+  /* Adjust the width as needed */
+  margin-bottom: 5px;
+  text-align: left;
+  /* Align labels on the left side */
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+.form-row {
+  margin-bottom: 5px;
+  font-size: .921em;
+
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px #1a488e14;
+
+  border: 1px solid #f6f9fd;
+}
+
+
+.date-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  /* Add margin to separate from the previous form group */
+}
+
+.date-group label {
+  margin-left: 15px;
+  margin-right: 10px;
+  white-space: nowrap;
+  /* Prevent label from wrapping */
+  color: #6b6666f1;
+}
+
+
+.schedule-form input {
+  display: inline-block;
+  /* Ensures labels and inputs are on the same line */
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  text-align: center;
+}
+
+.schedule-form input[type="text"],
+input[type="datetime-local"] {
+  width: 100%;
+  /* Set width to 100% to fill the container */
+  padding: 6px;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px solid #f6f9fd;
+}
+
+
+.schedule-form button {
+  width: 35%;
+  /* Adjusted width for buttons */
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 2%;
+  /* Provide space between buttons */
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+
+.schedule-form button#schedule-recording-button {
+  background: linear-gradient(45deg, #33aaff, #66ccff);
+  color: white;
+  margin-right: 7%;
+  margin-left: 5%;
+}
+
+
+.schedule-form button#cancel-schedule-button {
+  background: linear-gradient(45deg, #33aaff, #66ccff);
+  color: white;
+}
+
+
+.horizontal-line[_ngcontent-cpd-c85] {
+  width: 100%;
+  display: inline-block;
+  height: 1px;
+  background-color: #eaf0f8;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+}
+
+.font-h3 {
+  font-size: 1.052em !important;
+  letter-spacing: .01em;
+}
+
+.color-secondary-hint {
+  color: #09214766;
+}
+
+.horizontal-line[_ngcontent-cpd-c85]>span[_ngcontent-cpd-c85] {
+  display: inline;
+  background-color: #000000;
+  vertical-align: top;
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  padding: 0 .9vw;
+  line-height: 1;
+}
+
+[_ngcontent-cpd-c85] {
+  width: 100%;
+  display: inline-block;
+  height: 1px;
+  background-color: #eaf0f8;
+  margin-top: 4.5vh;
+  margin-bottom: 4.5vh;
+}
+
+
+.custom-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.custom-button .icon {
+  font-size: 14px;
+  /* Adjust the icon size */
+}
+
+.custom-button .label {
+  margin-top: 2px;
+  /* Adjust the margin */
+  font-size: 10px;
+  /* Adjust the label size */
+}
+
+.image-container .button-palette {
+  display: none;
+  height: 9%;
+}
+
+.image-container:hover .button-palette {
+  display: flex;
+}
+
+.button-palette {
+  position: absolute;
+  bottom: 2px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 2px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.button-palette button {
+  cursor: pointer;
+  border: none;
+  padding: 3px;
+  margin: 0;
+  position: relative;
+}
+
+.button-palette button:not(:last-child) {
+  margin-right: 10px;
+}
+
+.button-palette button[aria-label]::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: -20px;
+  /* Adjust this value to move the label above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+  white-space: nowrap;
+  color: #e4e4e4;
+  /* Adjust text color */
+  opacity: 0;
+  /* Initially hide the label */
+  pointer-events: none;
+  /* Make sure the label doesn't interfere with button clicks */
+  transition: opacity 0.3s ease;
+  /* Add a smooth transition effect */
+}
+
+.button-palette button:hover[aria-label]::after {
+  opacity: 1;
+  /* Show the label when hovering over the button */
+}
+
+
+
+.custom-context-menu {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  padding: 3px;
+  z-index: 1000;
+  /* Ensure the context menu appears above other elements */
+}
+
+.context-menu-option {
+  cursor: pointer;
+  padding: 3px;
+  transition: background-color 0.2s ease;
+}
+
+.context-menu-option:hover {
+  background-color: #f2f2f2;
+}

@@ -1,0 +1,383 @@
+/* reports.component.css */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-size: 100% 100%;
+    overflow-y: hidden;
+}
+
+.title {
+    font-size: 2.3em;
+    font-weight: 500;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+    font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+.title a {
+    color: #e6e6e6;
+    border: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Arrange items in a column */
+    height: 100%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    margin: 1% 2%;
+    
+}
+
+.card {
+    width: 200px;
+    height: 100px;
+    margin: 0 10px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px #1a488e14;
+    transition: transform 0.3s;
+}
+
+.card1 {
+    width: 500px;
+    height: 50px;
+    margin-left: 36%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px #1a488e14;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card1:hover {
+    transform: scale(1.05);
+}
+
+.card-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-content {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.charts-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 3%;
+    margin-left: 7%;
+}
+
+.pie-chart-container {
+    width: 370px;
+    height: 400px;
+}
+
+.bar-chart-container {
+    width: 500px;
+    height: 400px;
+}
+
+.line-chart-container {
+    width: 400px;
+    height: 400px;
+}
+
+.button-container {
+    display: flex;
+    margin-top: 1%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-left: 1%;
+
+}
+
+.button-container button {
+    /* Your existing button styles */
+    margin: 0 1px;
+    /* Add margin to create space between buttons */
+    padding: 10px;
+    width: 10%;
+    font-size: 16px;
+    /* Add this line to set the font size */
+    background: rgb(22, 22, 22);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    outline: none;
+
+}
+
+.button-container button:active {
+    /* Your existing button active styles */
+    background: rgb(22, 22, 22);
+    box-shadow: 0 1px #666;
+    transform: translateY(1px);
+}
+.container {
+    margin: 20px; /* Adjust as needed */
+    padding: 20px; /* Adjust as needed */
+    background-color: #f5f5f5; /* Light background */
+    border-radius: 10px; /* Rounded corners */
+  }
+  
+  .section {
+    padding: 20px; /* Padding within each section */
+    margin-bottom: 0px; /* Space between sections */
+    border-radius: 10px; /* Rounded corners */
+    background-color: #ffffffe6    ; /* White background for sections */
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-top: 200px;
+  }
+  .section2 {
+    padding: 20px; /* Padding within each section */
+    margin-bottom: 0px; /* Space between sections */
+    border-radius: 10px; /* Rounded corners */
+    background-color: white; /* White background for sections */
+    box-shadow: 0 0 1px 0 rgba(24, 94, 224, 0.15), 0 6px 12px 0 rgba(24, 94, 224, 0.15);
+    margin-left: 5%;
+    margin-right: 2%;
+    margin-top: 50px;
+  }
+  
+  .section h2 {
+    color: #333; /* Section header color */
+  }
+  
+
+  [data-theme="dark"] {
+    --font-color: #222;
+    --bg-color: #f2f3f7;
+    --button-bg-color: #f2f3f7;
+    --button-shadow:
+      -6px -6px 8px rgba(255, 255, 255, 0.9),
+      5px 5px 8px rgba(0, 0, 0, 0.07);
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  .button {
+    color: var(--font-color);
+    position: relative;
+    border-radius: 15px;
+    background: var(--button-bg-color);
+    font-weight: 700;
+    transition: all 100ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: var(--button-shadow);
+    cursor: pointer;
+    
+    &.button-link {
+      color: #067CF8;
+      display: block;
+      font-size: 17px;
+      margin: 30px 0 0;
+      padding: 20px 0;
+      width: 100%;
+    }
+    
+    &.button-small {
+      color: #6D6E74;
+      font-size: 22px;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
+    }
+    
+    &.button-large {
+      display: flex;
+      font-size: 20px;
+      flex-direction: column;
+      padding: 15px;
+      text-align: left;
+      width: 45%;
+      
+      & svg {
+        margin-bottom: 40px;
+        width: 30px;
+      }
+    }
+  }
+    
+  .button-dial {
+    border-radius: 50%;
+    display: flex;
+    height: 270px;
+  
+    align-items: center;
+    justify-content: center;
+    width: 270px;
+  }
+  
+  .button-dial-top {
+    background: var(--button-bg-color);
+    box-shadow: var(--button-shadow);
+    border-radius: 50%;
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    text-align: center;
+    z-index: 5;
+  }
+  
+  .button-dial-label {
+    color: #067CF8;
+    font-size: 28px;
+    fill: #067CF8;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .button-dial-spoke {
+    background-color: rgba(96, 171, 254, 0.6);
+    display: block;
+    height: 2px;
+    width: 83%;
+    position: absolute;
+    margin: 0 auto;
+    z-index: 5;
+    top: 50%;
+    
+    &:nth-child(2) {
+      transform: rotate(30deg);
+    }
+    &:nth-child(3) {
+      transform: rotate(60deg);
+    }
+    &:nth-child(4) {
+      transform: rotate(90deg);
+    }
+    &:nth-child(5) {
+      transform: rotate(120deg);
+    }
+    &:nth-child(6) {
+      transform: rotate(150deg);
+    }
+  }
+  .both{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .charts{
+    height: 300px;
+    width: auto;
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+
+.chart {
+  position: relative;
+  border-radius: 50%;
+  margin-right: 50px;
+  box-shadow: -4px -2px 4px 0px #ffffff, 4px 2px 6px 0px #dfe4ea;
+  height: 300px;
+  width: 300px;
+  /* inner shadow */
+}
+.chart::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  margin: 3rem;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  box-shadow: 2px 2px 2px 0px #dfe4ea inset, -2px -2px 2px 0px #ffffff inset;
+}
+.chart .chart-label {
+  position: absolute;
+  top: 0;
+  bottom: 0.5rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.chart .chart-label span {
+  display: block;
+}
+
+#btntransactions {
+  padding: 0.75rem;
+  
+}
+
+#chartfill {
+  animation: chart 500ms linear forwards;
+  
+}
+
+@keyframes chart {
+  from {
+    stroke-dashoffset: 245;
+  }
+  to {
+    stroke-dashoffset: 110;
+  }
+}
+.text-muted {
+  
+  margin-top: 20px;
+
+}
+
+
+.t2 {
+  font-size: 1.25rem;
+  color: #8fa3bc;
+
+}
+.t3 {
+  font-size: 12px;
+  color: #8fa3bc;
+
+}
+

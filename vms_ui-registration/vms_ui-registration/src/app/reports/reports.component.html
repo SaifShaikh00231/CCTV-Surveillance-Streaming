@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Reports</title>
+    
+</head>
+<app-tabs></app-tabs>
+
+<body>
+    <app-navbar></app-navbar>
+    <!-- Sections for different card groups -->
+    <div class="section" id="status-section">
+        <h2>Status</h2>
+        <div class="both">
+
+<div class="card-container">
+            <div class="card" *ngFor="let card of cardData">
+            <p class="card-content">{{ card.title }}</p>
+            <h2 class="card-title">{{ card.content }}</h2>
+        </div>
+        </div>
+          <div class="button button-dial" data-theme="dark">
+            
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            <span class="button-dial-spoke"></span>
+            
+            <div class="button-dial-top"></div>
+            <div class="button-dial-label" *ngIf="cardData1">
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 100 125" enable-background="new 0 0 100 100" xml:space="preserve"><g><path d="M60.333,68.349V11.111C60.333,4.984,55.349,0,49.222,0c-6.126,0-11.111,4.984-11.111,11.111v57.237   c-4.15,3.323-6.667,8.397-6.667,13.874c0,9.802,7.975,17.777,17.777,17.777C59.024,100,67,92.024,67,82.223   C67,76.746,64.482,71.672,60.333,68.349z M44.778,48.363h4.444v-4.444h-4.444V35.03h4.444v-4.444h-4.444v-8.889h4.444v-4.444   h-4.444v-6.142c0-2.455,1.99-4.444,4.444-4.444c2.455,0,4.445,1.989,4.445,4.444v41.111h-8.889V48.363z"/></g></svg>
+              {{ cardData1.cpu_temp }} &deg;C
+            </div>
+          </div>
+        </div>
+        </div>
+        <!-- Add more cards as needed -->
+      <div class="section2" id="status-section">
+        <div class="both">
+    
+    <div class="charts">
+      
+      <div class="chart" *ngIf="cardData1">
+        <div class="chart-label">
+          <span class="t2">{{ cardData1.cpu_percent }}%</span>
+          <span class="text-muted">CPU Utilization</span>
+        </div>
+        <svg class="progress" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#0F8"></circle>
+          <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7"  [attr.stroke-dasharray]="calculateDashOffset(cardData1.cpu_percent)" fill="transparent" stroke="#067CF8" stroke-linecap="round" class="meter"></circle>
+        </svg>
+        
+        
+        
+      </div>
+    
+      <div class="chart" *ngIf="cardData2">
+        <div class="chart-label">
+          <span class="t2">{{ cardData2.gpu_load }}</span>
+          <span class="text-muted">{{ cardData2.gpu_name }}</span>
+        </div>
+        <svg class="progress" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#0F8"></circle>
+          <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7"  [attr.stroke-dasharray]="calculateDashOffsetgpu(cardData1.cpu_percent)" fill="transparent" stroke="#067CF8" stroke-linecap="round" class="meter"></circle>
+        </svg>
+        
+        
+        </div>
+      
+    <div class="chart" *ngIf="cardData1">
+      <div class="chart-label">
+        <span class="t2">{{ cardData1.ram_percent }}%</span>
+        <span class="text-muted">RAM Utilization</span>
+      </div>
+      <svg class="progress" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <circle r="40" cx="50" cy="50" stroke-width="7" fill="transparent" stroke="#0F8"></circle>
+        <circle id="chartfill" r="40" cx="50" cy="50" stroke-width="7"  [attr.stroke-dasharray]="calculateDashOffsetram(cardData1.ram_percent)" fill="transparent" stroke="#067CF8" stroke-linecap="round" class="meter"></circle>
+      </svg>
+      
+      
+      </div>
+    </div>
+     </div>
+</div>
+     <!--
+      <div class="section" id="analytics-section">
+        <h2>Analytics</h2>
+        Add your cards for Analytics section here 
+        <div class="card">
+          <h3>Card Title</h3>
+          <p>Card content goes here.</p>
+        </div>
+        
+      </div>
+    
+      <div class="section" id="reports-section">
+        <h2>Reports</h2>
+        Add your cards for Reports section here
+        <div class="card">
+          <h3>Card Title</h3>
+          <p>Card content goes here.</p>
+        </div>
+        Add more cards as needed 
+      </div>
+    -->
+
+</body>
+
+</html>

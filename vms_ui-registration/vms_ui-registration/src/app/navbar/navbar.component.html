@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!----Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+  <title>Camera</title>
+</head>
+
+<body>
+  <div class="navbar">
+   
+
+    <h3>CCTV Surveillance Streaming</h3>
+
+
+
+
+    <div class="card1" *ngIf="cardData1">
+      <p class="card-content" *ngIf="!isLoginPage()">
+       
+        Date & time:&nbsp; {{ currentDate }}
+        <br><br>
+        CPU: {{ cardData1.cpu_percent }}% &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; RAM: {{ cardData1.ram_percent }}%
+       
+      </p>
+      <ul>
+      </ul>
+    </div>
+    
+    
+
+    <div *ngIf="batteryStatus">
+      <label class="battery-label"*ngIf="!isLoginPage()">{{ batteryStatus.battery_percent }}%</label>
+      <i [ngClass]="getBatteryIconClass(batteryStatus.battery_percent)" class="battery-icon" aria-hidden="true"*ngIf="!isLoginPage()"></i>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <a class="logout-link" (click)="logout()" *ngIf="!isLoginPage()">
+      <i class="fa fa-sign-out" aria-hidden="true"></i>
+    </a>
+   
+  
+  </div>
+
+  <nav class="sidebar" [ngClass]="{ 'close': isSidebarClosed }" *ngIf="!isLoginPage()">
+    <header (click)="toggleSidebar()">
+      <i class='bx bx-chevron-right toggle'></i>
+    </header>
+    
+    <ul class="menu">
+      <li class="nav-link">
+        <a href="/profile">  
+          <svg      style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:5%"
+          viewBox="0 300 550 10" class="icon2">
+          <path path class="icon2" d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1
+           359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 
+           0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"></path>
+        </svg>
+            <span class="name">{{ profileData.first_name }}</span> 
+            <span class="role" style="font-weight: 300;">{{ profileData.role_name }}</span> 
+          
+          </a>
+          </li> 
+      <li class="nav-link">
+        <a href="/reports">  
+          <svg
+            style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:5%;"
+            viewBox="0 300 576 10" class="icon">
+            <path class="icon"
+              d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z">
+            </path>
+         
+            </svg>
+            <span class="text" style="padding-left:5px">Dashboard</span> 
+        </a>
+        
+    </li>  <div class="dropdown">
+            <li class="nav-link">
+                <a href="/camera">
+               
+                
+                    <svg class="camera"
+                    style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:5%;"
+                    viewBox="0 8 25 10"class="icon">
+                      <path d="M0 0h24v24H0z" fill="none"class="icon"></path>
+                      <path d="M12 8.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 1 0 0-6.4z"></path>
+                      <path
+                        d="M9 2 7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z">
+                      </path>
+                    </svg> 
+                    <span class="text"style="padding-left:3px">Camera Conf.</span>
+               
+                 
+                    <div *ngIf="!isSidebarClosed" class="dropdown-content4">
+                      <a href="/camera"style="margin-left:5px;margin-right:5px">Camera List</a>
+                      <a href="/camera-add"style="margin-left:5px;margin-right:5px">Add Camera</a>
+                 
+                </div></a>
+                </li>
+              </div>
+         
+              <div class="dropdown">
+                <li class="nav-link">
+                    <a href="/live-view">
+                   
+                    
+                      <svg      style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:5%;"
+                      viewBox="0 250 600 10"class="icon">
+                        <path d="M384 112v288c0 26.51-21.49 48-48 48h-288c-26.51 0-48-21.49-48-48v-288c0-26.51 21.49-48 48-48h288C362.5 64 384 85.49 384
+                         112zM576 127.5v256.9c0 25.5-29.17 40.39-50.39 25.79L416 334.7V177.3l109.6-75.56C546.9 87.13 576 102.1 576 127.5z"></path>
+                      </svg>
+                        <span class="text"style="padding-left:8px">Main view</span>
+                   
+                     
+                        <div *ngIf="!isSidebarClosed" class="dropdown-content4">
+                          <a href="/live-view"style="margin-left:5px;margin-right:5px"class=dropdown>Live Feed</a>
+                          <a href="/playback"style="margin-left:5px;margin-right:5px">Playback</a>
+                     
+                    </div></a>
+                    </li>
+                  </div>
+             
+                  <li class="nav-link" *ngIf="hasAdminPermissions()">
+                    <a href="/profile">  
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" id="settings" class="icon1"  style="overflow: invisible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:2%;">
+                        <path fill="#000" fill-rule="evenodd" d="M11.438 3c-.622 0-1.126.504-1.126 1.125l-.135.945a1.125 1.125 0 0 1-1.788.741l-.764-.573a1.125 1.125 0 0 0-1.591 0l-.796.796c-.44.44-.44 1.151 0 1.59l.573.765a1.125 1.125 0 0 1-.74 1.788l-.946.136c-.621 0-1.125.503-1.125 1.124v1.126c0 .62.504 1.124 1.125 1.124l.945.136a1.125 1.125 0 0 1 .741 1.788l-.573.764c-.44.44-.44 1.152 0 1.591l.796.796c.44.44 1.151.44 1.59 0l.765-.573a1.125 1.125 0 0 1 1.788.74l.136.946c0 .621.503 1.125 1.124 1.125h1.126c.62 0 1.124-.504 1.124-1.125l.136-.945a1.125 1.125 0 0 1 1.788-.741l.764.573c.44.44 1.152.44 1.591 0l.796-.796c.439-.44.439-1.151 0-1.59l-.573-.765a1.125 1.125 0 0 1 .74-1.788l.946-.136c.621 0 1.125-.503 1.125-1.124v-1.126c0-.62-.504-1.124-1.125-1.124l-.945-.136a1.125 1.125 0 0 1-.741-1.788l.573-.764c.439-.44.439-1.152 0-1.591l-.796-.796a1.125 1.125 0 0 0-1.59 0l-.765.573a1.125 1.125 0 0 1-1.788-.74l-.136-.946c0-.621-.503-1.125-1.124-1.125h-1.126ZM12 14.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5Z" 
+                        clip-rule="evenodd" class="icon1"></path></svg>
+                
+                        <span class="text"style="padding-left:8px">Settings</span> 
+                    </a>
+                    
+                </li> 
+                 <!--
+                <div class="dropdown"*ngIf="hasAdminPermissions()">
+                  <li class="nav-link">
+                      <a href="/users-list">
+                     
+                      
+                        <svg      style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:6%;"
+                        viewBox="0 300 550 10"class="icon">
+                        <path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"></path>
+                      </svg>
+                          <span class="text"style="padding-left:8px">Users</span>
+                     
+                       
+                          <div *ngIf="!isSidebarClosed" class="dropdown-content4">
+                            <a href="/add-users"style="margin-left:5px;margin-right:5px"class=dropdown>Add Users</a>
+                            <a href="/users-list"style="margin-left:5px;margin-right:5px">Users List</a>
+                       
+                      </div></a>
+                      </li>
+                    </div>
+                    <div class="dropdown"*ngIf="hasAdminPermissions()">
+                      <li class="nav-link">
+                          <a href="/permissions">
+                         
+                          
+                            <svg      style="width: 22px; height: 20px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:5%;"
+                            viewBox="0 8 20 10"class="icon">
+                            <path fill="none" d="M0 0h24v24H0z"></path>
+                            <path d="M17 11c.34 0 .67.04 1 .09V6.27L10.5 3 3 6.27v4.91c0 4.54 3.2 8.79 7.5 9.82.55-.13 1.08-.32 1.6-.55-.69-.98-1.1-2.17-1.1-3.45 0-3.31 2.69-6 6-6z"></path>
+                            <path d="M17 13c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 1.38c.62 0 1.12.51 1.12 1.12s-.51 1.12-1.12 1.12-1.12-.51-1.12-1.12.5-1.12 1.12-1.12zm0 5.37c-.93 0-1.74-.46-2.24-1.17.05-.72 1.51-1.08 2.24-1.08s2.19.36 2.24 1.08c-.5.71-1.31 1.17-2.24 1.17z"></path>
+                          </svg>
+                              <span class="text"style="padding-left:8px">Access</span>
+                         
+                           
+                              <div *ngIf="!isSidebarClosed" class="dropdown-content4">
+                                <a href="/permissions"style="margin-left:5px;margin-right:5px">Permissions</a>
+                                <a href="/roles"style="margin-left:5px;margin-right:5px">Roles</a>
+                           
+                          </div></a>
+                          </li>
+                        </div>
+                      -->
+        </ul>
+  </nav>
+</body>
+
+</html>

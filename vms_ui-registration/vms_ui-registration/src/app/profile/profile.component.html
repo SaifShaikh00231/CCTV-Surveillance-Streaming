@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Profile</title>
+
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+  <app-settings></app-settings>
+  <div class="container">
+    <section class="profile">
+      <i class="fas fa-user-tie fa-7x mt-5"></i>
+      <h2>{{ profileData.role_name }}</h2>
+
+
+      <i class="hidden" (click)="editProfile()"></i>
+
+    </section>
+    <section class="projects">
+      <div class="section-heading">
+        <h2>Information</h2>
+        <div class="bar"></div>
+      </div>
+      <div class="info">
+        <div class="contact-line">
+          <div class="info-pair">
+            <h4>First Name:</h4>
+            <ng-container *ngIf="!editMode['first_name']; else editFirstName">
+              <p>{{ profileData.first_name }}</p>
+            </ng-container>
+            <ng-template #editFirstName>
+              <input type="text" id="first_name" name="first_name" class="input-field"
+                [(ngModel)]="profileData.first_name" />
+            </ng-template>
+          </div>
+
+
+          <div class="contact-line">
+            <div class="info-pair">
+              <h4>Last Name:</h4>
+              <ng-container *ngIf="!editMode['last_name']; else editLastName">
+                <p>{{ profileData.last_name }}</p>
+              </ng-container>
+              <ng-template #editLastName>
+                <input type="text" id="last_name" name="last_name" class="input-field"
+                  [(ngModel)]="profileData.last_name" />
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-line">
+          <div class="info-pair">
+            <h4>Username:</h4>
+            <ng-container *ngIf="!editMode['username']; else editEmail">
+              <p>{{ profileData.username }}</p>
+            </ng-container>
+            <ng-template #editEmail>
+              <input type="text" id="username" name="username" class="input-field" [(ngModel)]="profileData.username" />
+            </ng-template>
+          </div>
+
+          <div class="contact-line">
+            <div class="info-pair">
+              <h4 class="mobile">Mobile No:</h4>
+              <ng-container *ngIf="!editMode['mobile']; else editMobile">
+                <p class="mobile">{{ profileData.mobile }}</p>
+              </ng-container>
+              <ng-template #editMobile>
+                <input type="text" id="mobile" name="mobile" class="input-field" [(ngModel)]="profileData.mobile" />
+              </ng-template>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-line">
+          <div class="info-pair">
+            <h4>Date of birth:</h4>
+            <ng-container *ngIf="!editMode['dob']; else editDob">
+              <p>{{ profileData.dob }}</p>
+            </ng-container>
+            <ng-template #editDob>
+              <input type="date" id="dob" name="dob" class="input-field" [(ngModel)]="profileData.dob" />
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="isEditMode()">
+        <button class="submit-button" id="submit-button" (click)="saveChanges()">Save</button>
+      </ng-container>
+    </section>
+  </div>
+</body>
+
+</html>

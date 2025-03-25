@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Camera</title>
+</head>
+<app-navbar></app-navbar>
+
+<body>
+  
+    <div class="overview">
+        <!-- camera.component.html -->
+        <div *ngIf="showEditForm" class="edit-form">
+            <h2>Edit Camera</h2>
+            <form (submit)="onEditSubmit()">
+                <div class="form-row">
+                    <label for="cameraName">Camera Name</label>
+                    <input type="text" id="cameraName" name="cameraName" [(ngModel)]="selectedCamera[1]">
+                </div>
+
+                <div class="form-row">
+                    <label for="model_name">Model Name</label>
+                    <select id="model_name" name="model_name" [(ngModel)]="selectedCamera[5]">
+                        <option value="" disabled selected>Select Model</option>
+                        <option *ngFor="let model of models" [value]="model">{{ model }}</option>
+                    </select>
+                </div>
+
+                <!-- Hide rows based on camera type -->
+                <div *ngIf="getSelectedCameraType() !== 'camera_usb' && getSelectedCameraType() !== 'camera_web'">
+                    <div class="form-row">
+                        <label for="ipAddress">IP Address</label>
+                        <input type="text" id="ipAddress" name="ipAddress" [(ngModel)]="selectedCamera[6]">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="port">Port</label>
+                        <input type="text" id="port" name="port" [(ngModel)]="selectedCamera[7]">
+                    </div>
+                    <div class="form-row">
+                        <label for="port">Link</label>
+                        <input type="text" id="link" name="link" [(ngModel)]="selectedCamera[13]">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="location">Location</label>
+                        <select id="location" name="location" [(ngModel)]="selectedCamera[3]" required>
+                            <option value="" disabled selected>Select Location</option>
+                            <option *ngFor="let location of locations" [value]="location">{{ location }}</option>
+                        </select>
+                        <input type="hidden" id="cameraId" name="cameraId" [(ngModel)]="selectedCamera[0]">
+                    </div>
+
+                    <div class="form-row">
+                        <label for="channel">Channels</label>
+                        <select id="channel" name="channel" [(ngModel)]="selectedCamera[10]" required>
+                            <option value="" disabled selected>Select Channel</option>
+                            <option *ngFor="let channel of channels" [value]="channel">{{ channel }}</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="protocol">Protocol</label>
+                        <select id="protocol" name="protocol" [(ngModel)]="selectedCamera[11]" required>
+                            <option value="" disabled selected>Select Protocol</option>
+                            <option *ngFor="let protocol of protocols" [value]="protocol">{{ protocol }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" [(ngModel)]="selectedCamera[8]">
+                </div>
+
+                <div class="form-row">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" [(ngModel)]="selectedCamera[9]">
+                </div>
+
+                <div class="form-row">
+                    <button type="submit" id="save-button">Save</button>
+                    <button type="button" (click)="cancelEdit()" id="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="data-table camera-list" id="camera-list">
+            <h2>
+                <span>Camera List</span>
+                <!-- Search bar -->
+                <div class="search-bar">
+                    <input #searchInput type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="search()">
+                    <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+                    <div class="search-results" *ngIf="searchText">
+                        <div *ngFor="let result of searchResults">
+                            <span [innerHTML]="result"></span>
+                        </div>
+                    </div>
+                </div>
+            </h2>
+
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Camera Name</th>
+                        <th>Model Name</th>
+                        <th>Camera Type</th>
+                        <th>IP Address</th>
+                        <th>Port</th>
+                        <th>Location</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <ng-container *ngFor="let camera of devices; index as i">
+
+
+                        <tr *ngIf="!camera[12]">
+                            <td class="hidden-value">{{ camera[0] || '---' }}</td>
+                            <td>{{ camera[1] || '---' }}</td>
+                            <td>{{ camera[5] || '---' }}</td>
+                            <td>{{ camera[2] || '---' }}</td>
+                            <td>{{ camera[6] || '---' }}</td>
+                            <td>{{ camera[7] || '---' }}</td>
+                            <td>{{ camera[3] || '---' }}</td>
+                            <td>{{ camera[4] || '---' }}</td>
+                            <td class="hidden-value">{{ camera[8] || '---' }}</td>
+                            <td class="hidden-value">{{ camera[9] || '---' }}</td>
+                            <td class="hidden-value">{{ camera[10] || '---' }}</td>
+                            <td class="hidden-value">{{ camera[12] || '---' }}</td>
+
+                            <td class="button-cell">
+
+
+                                <div class="button-container">
+                                    <button type="button" id="view-button" (click)="connect(camera[0])">
+                                        <span *ngIf="!loadingMap[camera[0]]">
+                                            {{ getButtonName(camera[0]) }}
+                                        </span>
+                                        <div *ngIf="loadingMap[camera[0]]" class="loader"></div>
+                                    </button>
+                                    <span class="action-icon" (click)="startEditing(camera)">
+                                        <svg class="icon2" viewBox="0 0 500 512">
+                                            <path
+                                                d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                    <span class="action-icon" *ngIf="checkDeletePermission()"
+                                        (click)="deleteCamera(camera)">
+                                        <svg class="icon" viewBox="0 0 15 24">
+                                            <path d="M0 0h24v24H0z" fill="none"></path>
+                                            <path
+                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z">
+                                            </path>
+                                        </svg>
+                                    </span>
+
+                                </div>
+
+                            </td>
+
+                    </ng-container>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

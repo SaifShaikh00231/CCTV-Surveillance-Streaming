@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Camera</title>
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+  <app-settings></app-settings>
+  <header>
+    <h1 class="title">Permissions</h1>
+    <button type="button" id="add-perm-button" (click)="addPermission()" class="add-perm-button"
+      *ngIf="hasPermission('create_permissions')">
+      <i class="fas fa-plus" style="margin-right: 10px;"> </i> Add Permission </button>
+    <span class="action-icon" (click)="startEditing()" *ngIf="hasPermission('update_permissions')">
+      <svg class="icon2" viewBox="0 0 512 512">
+        <path
+          d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z">
+        </path>
+      </svg>
+
+    </span>
+    <span class="action-icon" (click)="deletePermissions()" *ngIf="hasPermission('delete_permissions')">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"></path>
+      </svg>
+
+    </span>
+
+  </header>
+  <h2 style="margin-left: 5%;margin-top: 3%;">Roles</h2>
+
+  <div *ngIf="showAddPerm" class="add-permission">
+    <h2>Add Permission</h2>
+    <form (submit)="onAddSubmit()">
+      <div class="form-row">
+        <label for="permission_title">Permission Title</label>
+        <input type="text" id="permission_title" name="permission_title"
+          [(ngModel)]="formPermissionData.permission_title" required>
+      </div>
+      <div class="form-row">
+        <label for="permission_names">Permission Name</label>
+        <input type="text" id="permission_names" name="permission_names"
+          [(ngModel)]="formPermissionData.permission_name" required>
+      </div>
+
+      <div class="button-container">
+        <button type="submit" id="add-button">Add</button>
+        <button type="button" (click)="cancelAdd()" id="cancel-add-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+  <div *ngIf="showEditPerm" class="edit-permission">
+    <h2>Edit Permission Title</h2>
+    <form (submit)="onEditSubmit()">
+      <div class="form-row">
+        <label for="permission_title" style="margin-left: 0%;">Permission Title</label>
+        <select id="permission_title" name="permission_title" style="width: 65%" [(ngModel)]="selectedPermissionTitle">
+          <option value="">Select Permission Title</option>
+          <option *ngFor="let title of uniquePermissionTitles" [value]="title">{{ title }}</option>
+        </select>
+      </div>
+
+
+      <div class="form-row">
+        <label for="edit_permission_title">Edit Title</label>
+        <input type="text" id="new_role_name" name="edit_permission_title" [(ngModel)]="updatedPermissionTitle">
+      </div>
+
+
+      <div class="button-container">
+        <button type="submit" id="save-button">Save</button>
+        <button type="button" (click)="cancelEdit()" id="cancel-button">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+
+  <!-- Delete Permission Form -->
+  <div *ngIf="showDeletePerm" class="delete-permission">
+    <h2>Delete Permission</h2>
+    <p>Note :- By deleteing Title associated permissions will also get DELETED</p>
+    <div class="form-row">
+      <label for="permission_title" style="margin-left: 0%;">Permission Title</label>
+      <select id="permission_title" name="permission_title" style="width: 65%" [(ngModel)]="selectedPermissionTitle">
+        <option value="">Select Permission Title</option>
+        <option *ngFor="let title of uniquePermissionTitles" [value]="title">{{ title }}</option>
+      </select>
+    </div>
+
+    <div class="button-container">
+      <button type="button" (click)="onDeleteSubmit()" id="delete-button">Delete</button>
+      <button type="button" (click)="cancelDelete()" id="cancel-delete-button">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Radio buttons container -->
+  <input id="inpLock" type="checkbox" [(ngModel)]="isLocked" [disabled]="isLocked">
+  <label class="btn-lock" [class.locked]="isLocked" (click)="toggleLock()">
+    <span class="label">{{ lockLabel }}</span>
+    <svg width="26" height="30" viewBox="0 0 36 40">
+      <path class="lockb"
+        d="M27 27C27 34.1797 21.1797 40 14 40C6.8203 40 1 34.1797 1 27C1 19.8203 6.8203 14 14 14C21.1797 14 27 19.8203 27 27ZM15.6298 26.5191C16.4544 25.9845 17 25.056 17 24C17 22.3431 15.6569 21 14 21C12.3431 21 11 22.3431 11 24C11 25.056 11.5456 25.9845 12.3702 26.5191L11 32H17L15.6298 26.5191Z">
+      </path>
+      <path class="lock" d="M6 21V10C6 5.58172 9.58172 2 14 2V2C18.4183 2 22 5.58172 22 10V21"></path>
+      <path class="bling" d="M29 20L31 22"></path>
+      <path class="bling" d="M31.5 15H34.5"></path>
+      <path class="bling" d="M29 10L31 8"></path>
+    </svg>
+  </label>
+  <div class="cntr">
+    <label *ngFor="let role of roles" class="btn-radio">
+      <input type="radio" name="role" [(ngModel)]="selectedRole" [value]="role" (change)="onRoleChanged(role)">
+      <svg width="20px" height="20px" viewBox="0 0 20 20">
+        <circle cx="10" cy="10" r="9"></circle>
+        <path
+          d="M10,7 C8.34314575,7 7,8.34314575 7,10 C7,11.6568542 8.34314575,13 10,13 C11.6568542,13 13,11.6568542 13,10 C13,8.34314575 11.6568542,7 10,7 Z"
+          class="inner"></path>
+        <path
+          d="M10,1 L10,1 L10,1 C14.9705627,1 19,5.02943725 19,10 L19,10 L19,10 C19,14.9705627 14.9705627,19 10,19 L10,19 L10,19 C5.02943725,19 1,14.9705627 1,10 L1,10 L1,10 C1,5.02943725 5.02943725,1 10,1 L10,1 Z"
+          class="outer"></path>
+      </svg>
+      <span>{{ role }}</span>
+    </label>
+  </div>
+
+
+  <div class="toggle-container">
+    <input type="checkbox" id="toggle" class="input" [(ngModel)]="selectAllChecked" (change)="toggleSelectAll()">
+    <label for="toggle" class="toggle-label">
+      <div class="toggle-wrapper">
+        <span class="selector"></span>
+      </div>
+      <p class="notification">Select all <span class="selectedbody"></span></p>
+    </label>
+  </div>
+
+
+  <div class="overview">
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Permission Title</th>
+            <th>Create</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!--  <td>{{ permission.permission_name }}</td>-->
+          <tr *ngFor="let title of uniquePermissionTitles">
+            <td>{{ title }}</td>
+            <ng-container *ngFor="let permission of permissions">
+              <ng-container *ngIf="permission.permission_title === title">
+                <td>
+                  <div class="checkbox-container">
+                    <input [value]="permission.permission_name" type="checkbox"
+                      id="{{ 'cbx_' + permission.permission_name }}"
+                      [checked]="checkboxStates[permission.permission_name]"
+                      (change)="toggleCheckbox(permission.permission_name)" [disabled]="isLocked"
+                      style="display: none;">
+                    <label [for]="'cbx_' + permission.permission_name" class="check">
+                      <svg width="18px" height="18px" viewBox="0 0 18 18">
+                        <path
+                          d="M1,9 L1,3.5 C1,2 2,1 3.5,1 L14.5,1 C16,1 17,2 17,3.5 L17,14.5 C17,16 16,17 14.5,17 L3.5,17 C2,17 1,16 1,14.5 L1,9 Z">
+                        </path>
+                        <polyline points="1 9 7 14 15 4"></polyline>
+                      </svg>
+                    </label>
+                  </div>
+                </td>
+
+
+              </ng-container>
+            </ng-container>
+          </tr>
+
+        </tbody>
+      </table>
+
+      <div class="button-container1">
+        <button type="button1" (click)="onSaveClicked()">Save</button>
+        <button type="button1" id="cancel-button1" (click)="resetCheckboxes()">Reset</button>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

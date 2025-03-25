@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Playback</title>
+
+
+</head>
+
+<body>
+  <app-navbar></app-navbar>
+
+  <div>
+
+    <!-- Add this button in your component's HTML file -->
+    <button class="playback-button" (click)="openFileExplorer()">Select Video for Playback</button>
+
+    <input type="file" #fileInput style="display: none;" (change)="onFileSelected($event)">
+
+    <div class="live-view-container">
+      <div class="grid-container">
+        <div class="video-container">
+          <!-- Use the selected video source directly -->
+          <video #videoElement controls></video>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  </div>
+</body>
+
+</html>

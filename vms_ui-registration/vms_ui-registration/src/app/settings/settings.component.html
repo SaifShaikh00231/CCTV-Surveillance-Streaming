@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="tabs">
+    <a class="tab-link" [class.active]="activeTab === 1" (click)="setActiveTab(1); navigateTo('/profile')" [routerLink]="['/profile']" [queryParams]="{ 'tab': activeTab }">
+      <svg style="width: 22px; height: 30px; overflow: visible; opacity: 1; z-index: 1000; fill: rgb(3, 3, 3);margin-left:0%;" viewBox="-1500 250 576 10" class="icon">
+        <path d="M512 32H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h448c35.35 0 64-28.65 64-64V96C576 60.65 547.3 32 512 32zM176 128c35.35 0 64 28.65 64 64s-28.65 64-64 64s-64-28.65-64-64S140.7 128 176 128zM272 384h-192C71.16 384 64 376.8 64 368C64 323.8 99.82 288 144 288h64c44.18 0 80 35.82 80 80C288 376.8 280.8 384 272 384zM496 320h-128C359.2 320 352 312.8 352 304S359.2 288 368 288h128C504.8 288 512 295.2 512 304S504.8 320 496 320zM496 256h-128C359.2 256 352 248.8 352 240S359.2 224 368 224h128C504.8 224 512 231.2 512 240S504.8 256 496 256zM496 192h-128C359.2 192 352 184.8 352 176S359.2 160 368 160h128C504.8 160 512 167.2 512 176S504.8 192 496 192z"></path>
+      </svg>
+      <label class="tab tab-label">Profile</label>
+    </a>
+
+    <a class="tab-link" [class.active]="activeTab === 2" (click)="setActiveTab(2); navigateTo('/permissions')" [routerLink]="['/permissions']" [queryParams]="{ 'tab': activeTab }">
+      <svg style="width: 22px; height: 30px; overflow: visible; opacity: 1; z-index: 1000; fill: rgb(3, 3, 3);margin-left:0%;" viewBox="-30 8 20 10" class="icon">
+        <path fill="none" d="M0 0h24v24H0z"></path>
+        <path d="M17 11c.34 0 .67.04 1 .09V6.27L10.5 3 3 6.27v4.91c0 4.54 3.2 8.79 7.5 9.82.55-.13 1.08-.32 1.6-.55-.69-.98-1.1-2.17-1.1-3.45 0-3.31 2.69-6 6-6z"></path>
+        <path d="M17 13c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 1.38c.62 0 1.12.51 1.12 1.12s-.51 1.12-1.12 1.12-1.12-.51-1.12-1.12.5-1.12 1.12-1.12zm0 5.37c-.93 0-1.74-.46-2.24-1.17.05-.72 1.51-1.08 2.24-1.08s2.19.36 2.24 1.08c-.5.71-1.31 1.17-2.24 1.17z"></path>
+      </svg>
+      <label class="tab tab-label">Permissions</label>
+    </a>
+     
+    <a class="tab-link" [class.active]="activeTab === 3" (click)="setActiveTab(3); navigateTo('/roles')" [routerLink]="['/roles']" [queryParams]="{ 'tab': activeTab }">
+      <svg      style="width: 22px; height: 30px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:0%;"
+      viewBox="-1800 300 550 10"class="icon">
+      <path d="M352 128C352 198.7 294.7 256 224 256C153.3 256 96 198.7 96 128C96 57.31 153.3 0 224 0C294.7 0 352 57.31 352 128zM209.1 359.2L176 304H272L238.9 359.2L272.2 483.1L311.7 321.9C388.9 333.9 448 400.7 448 481.3C448 498.2 434.2 512 417.3 512H30.72C13.75 512 0 498.2 0 481.3C0 400.7 59.09 333.9 136.3 321.9L175.8 483.1L209.1 359.2z"></path>
+    </svg>
+      <label class="tab tab-label">Roles</label>
+      <input type="radio" id="radio-3" name="tabs" /> 
+    </a>
+
+    <a class="tab-link" [class.active]="activeTab === 4" (click)="setActiveTab(4); navigateTo('/add-users')" [routerLink]="['/add-users']" [queryParams]="{ 'tab': activeTab }">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="-70 0 10 64" id="add"  style="width: 25px; height: 30px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:0%;"><path fill="rgb(3, 3, 3)" d="M32 8.21A23.79 23.79 0 1 0 55.79 32 23.814 23.814 0 0 0 32 8.21Zm9.29 25.29H33.5v7.79a1.5 1.5 0 0 
+        1-3 0V33.5h-7.79a1.5 1.5 0 0 1 0-3h7.79v-7.79a1.5 1.5 0 0 1 3 0v7.79h7.79a1.5 1.5 0 0 1 0 3Z"></path></svg>
+      <label class="tab tab-label">Add Users</label>
+      <input type="radio" id="radio-4" name="tabs" /> 
+    </a>
+
+
+    <a class="tab-link" [class.active]="activeTab === 5" (click)="setActiveTab(5); navigateTo('/users-list')" [routerLink]="['/users-list']" [queryParams]="{ 'tab': activeTab }">
+      <svg xmlns="http://www.w3.org/2000/svg"viewBox="-1400 0 512 512" id="list"  style="width: 25px; height: 30px; overflow: visible; opacity: 1; z-index: 1; fill: rgb(3, 3, 3);margin-left:0%;"><path d="M408 64H104c-22.091 0-40 17.908-40 40v304c0 22.092 17.909 40 40 40h304c22.092 0 40-17.908 40-40V104c0-22.092-17.908-40-40-40zM304 368H144v-48h160v48zm64-88H144v-48h224v48zm0-88H144v-48h224v48z"></path></svg>
+
+      <label class="tab tab-label">Users</label>
+      <input type="radio" id="radio-4" name="tabs" /> 
+   </a>
+
+
+
+
+
+
+
+
+    <span class="glider" [style.transform]="'translateX(' + getGliderPosition() + ')'" ></span>
+    
+  </div>
+</div>

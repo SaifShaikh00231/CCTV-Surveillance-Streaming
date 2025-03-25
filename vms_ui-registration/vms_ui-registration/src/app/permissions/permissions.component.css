@@ -1,0 +1,719 @@
+* {
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-size: 100% 100%;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.check {
+  cursor: pointer;
+  position: relative;
+  margin: auto;
+  /* Center horizontally */
+  display: block;
+  /* Make it a block-level element */
+  width: 18px;
+  height: 18px;
+  -webkit-tap-highlight-color: transparent;
+  transform: translate3d(0, 0, 0);
+}
+
+.check:before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(34, 50, 84, 0.03);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.check svg {
+  position: relative;
+  z-index: 1;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #C8CCD4;
+  stroke-width: 1.5;
+  transform: translate3d(0, 0, 0);
+  transition: all 0.2s ease;
+}
+
+.check svg path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 0;
+}
+
+.check svg polyline {
+  stroke-dasharray: 22;
+  stroke-dashoffset: 66;
+}
+
+.check:hover:before {
+  opacity: 1;
+}
+
+.check:hover svg {
+  stroke: rgb(22, 22, 22);
+}
+
+/* Target checkboxes with IDs starting with "cbx" */
+input[id^="cbx"]:checked+.check svg {
+  stroke: #255f9c;
+}
+
+input[id^="cbx"]:checked+.check svg path {
+  stroke-dashoffset: 60;
+  transition: all 0.6s linear;
+}
+
+input[id^="cbx"]:checked+.check svg polyline {
+  stroke-dashoffset: 42;
+  transition: all 0.2s linear;
+  transition-delay: 0.30s;
+}
+
+.title {
+  font-size: 2.3em;
+  font-weight: 500;
+  text-align: center;
+  margin-left: 1%;
+  margin-top: 1%;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+.title a {
+  color: #e6e6e6;
+  border: 0;
+}
+
+.button-container1 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: transparent;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  /* Center align items horizontally */
+  align-items: center;
+}
+
+.button-container1 button,
+.button-container1 #cancel-button1 {
+  margin: 0 10px;
+  /* Add margin to create space between buttons */
+  padding: 10px 20px;
+  font-size: 16px;
+  background: rgb(22, 22, 22);
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  outline: none;
+}
+
+.button-container1 button1:active,
+.button-container1 #cancel-button1:active {
+  background: rgb(22, 22, 22);
+  box-shadow: 0 1px #666;
+  transform: translateY(1px);
+}
+
+.button-container1 #cancel-button1 {
+  /* Your existing cancel button styles */
+  background: rgb(22, 22, 22);
+  margin-top: 0%;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+
+
+
+/* Style for the radio buttons container */
+.radio-container {
+  display: inline-flex;
+  position: absolute;
+  align-items: center;
+  margin-left: 3%;
+  margin-bottom: 1%;
+
+}
+
+h2 {
+  padding-bottom: 0.1%;
+
+  margin-top: 2%;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+.radio-container h2 {
+  margin-right: 10px;
+  /* Adjust as needed */
+  margin-top: 3%;
+  padding-bottom: 45%;
+
+}
+
+/* Style for each radio button */
+.radio-container input[type="radio"] {
+  margin-right: 10px;
+}
+
+.radio-container label.btn-radio span {
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  display: block;
+  /* Add this line */
+  margin-top: 5% !important;
+  /* Adjust the value as needed */
+}
+
+
+.overview {
+  display: flex;
+  flex-direction: column;
+  /* Adjusted to a column layout */
+  width: 100%;
+  margin-left: 63px;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+.table-container {
+  margin-right: 100px;
+}
+
+table {
+  flex: 1 1 calc(50% - 50px);
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+
+td {
+  padding: 10px;
+  text-align: left;
+
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+  background-color: #f5f5f5;
+  font-weight: 500;
+}
+
+th:first-child,
+td:first-child {
+  white-space: nowrap;
+  width: 350px;
+  /* Adjust the width as needed */
+}
+
+.table-container td:first-child {
+  text-align: left;
+  /* Align text to the left */
+  padding-left: 2%;
+  /* Add margin-left as needed */
+}
+
+
+/* Optional: Add hover effect for better user interaction */
+tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Style for checkboxes */
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+input[type="checkbox"]:checked {
+  animation: bounce 0.1s ease-in-out alternate;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.btn-lock {
+  position: absolute;
+
+  display: inline-block;
+  background: rgb(22, 22, 22);
+  width: 54px;
+  height: 54px;
+  box-sizing: border-box;
+  padding: 12px 0 0 18px;
+  border-radius: 50%;
+  margin-top: -3%;
+  margin-left: 48.9%;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-lock .label {
+  position: absolute;
+  top: 20px;
+  left: 140%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+.btn-lock svg {
+  fill: none;
+  transform: translate3d(0, 0, 0);
+}
+
+.btn-lock .bling {
+  stroke: white;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 3;
+  stroke-dashoffset: 15;
+  transition: all 0.3s ease;
+}
+
+.btn-lock .lock {
+  stroke: white;
+  stroke-width: 4;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-dasharray: 36;
+  transition: all 0.4s ease;
+}
+
+.btn-lock .lockb {
+  fill: white;
+  fill-rule: evenodd;
+  clip-rule: evenodd;
+  transform: rotate(8deg);
+  transform-origin: 14px 20px;
+  transition: all 0.2s ease;
+}
+
+.btn-lock.locked {
+  background: rgb(22, 22, 22);
+}
+
+.btn-lock.locked .bling {
+  animation: bling 0.3s linear forwards;
+  animation-delay: 0.2s;
+}
+
+.btn-lock.locked .lock {
+  stroke-dasharray: 48;
+  animation: locked 0.3s linear forwards;
+}
+
+.btn-lock.locked .lockb {
+  transform: rotate(0);
+  transform-origin: 14px 22px;
+}
+
+#inpLock {
+  display: none;
+}
+
+#inpLock:checked+.btn-lock {
+  background: rgb(22, 22, 22);
+}
+
+#inpLock:checked+.btn-lock svg .bling {
+  animation: bling 0.3s linear forwards;
+  animation-delay: 0.2s;
+}
+
+#inpLock:checked+.btn-lock svg .lock {
+  stroke-dasharray: 48;
+  animation: locked 0.3s linear forwards;
+}
+
+#inpLock:checked+.btn-lock svg .lockb {
+  transform: rotate(0);
+  transform-origin: 14px 22px;
+}
+
+@keyframes bling {
+  50% {
+    stroke-dasharray: 3;
+    stroke-dashoffset: 12;
+  }
+
+  100% {
+    stroke-dasharray: 3;
+    stroke-dashoffset: 9;
+  }
+}
+
+@keyframes locked {
+  50% {
+    transform: translateY(1px);
+  }
+}
+
+
+.input {
+  display: none;
+}
+
+.input:checked+.toggle-label .toggle-wrapper {
+  box-shadow: 0 8px 14px 0 rgba(26, 29, 41, 0.12);
+}
+
+.input:checked+.toggle-label .toggle-wrapper>.selector {
+  left: calc(100% - 30px);
+  background: rgb(22, 22, 22);
+}
+
+.toggle-label {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.toggle-container {
+  position: absolute;
+  margin-left: 90%;
+  margin-top: -2.5%;
+  /* Adjust top margin as needed */
+
+}
+
+.toggle-wrapper {
+  position: relative;
+  width: 70px;
+  height: 35px;
+  background-color: #eaeaea;
+  border-radius: 999px;
+  margin: auto;
+
+  cursor: pointer;
+  pointer-events: all;
+  box-shadow: 0 8px 14px 0 rgba(238, 95, 57, 0.12);
+  margin-bottom: 18%;
+
+}
+
+.selector {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 50%;
+  left: 2px;
+  transform: translateY(-50%);
+  background: rgb(22, 22, 22);
+  transition: left 0.25s ease;
+  border-radius: 50%;
+
+
+}
+
+.notification {
+  position: relative;
+  font-size: 18px;
+  width: 100%;
+  margin-left: 100%;
+  margin-top: -53%;
+  /* Adjust top margin as needed */
+
+
+}
+
+
+.cntr {
+  margin-left: 8%;
+  margin-top: -2.2%;
+  margin-bottom: 3.5%;
+
+}
+
+.btn-radio {
+  cursor: pointer;
+
+  float: left;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.btn-radio:not(:first-child) {
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .btn-radio {
+    display: block;
+    float: none;
+  }
+
+  .btn-radio:not(:first-child) {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+
+.btn-radio svg {
+  fill: none;
+  vertical-align: middle;
+}
+
+.btn-radio svg circle {
+  stroke-width: 2;
+  stroke: #C8CCD4;
+}
+
+.btn-radio svg path {
+  stroke: #255f9c;
+  background: rgb(22, 22, 22);
+
+}
+
+.btn-radio svg path.inner {
+  stroke-width: 6;
+  stroke-dasharray: 19;
+  stroke-dashoffset: 19;
+}
+
+.btn-radio svg path.outer {
+  stroke-width: 2;
+  stroke-dasharray: 57;
+  stroke-dashoffset: 57;
+}
+
+.btn-radio input {
+  display: none;
+  padding-left: 5px;
+}
+
+.btn-radio input:checked+svg path {
+  transition: all .4s ease;
+  padding-left: 5px;
+
+}
+
+.btn-radio input:checked+svg path.inner {
+  stroke-dashoffset: 38;
+  transition-delay: .3s;
+}
+
+.btn-radio input:checked+svg path.outer {
+  stroke-dashoffset: 0;
+}
+
+span {
+  display: flexbox;
+  margin-left: 5px;
+}
+
+.edit-permission,
+.add-permission,
+.delete-permission {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  background-color: #fff;
+  border: 1px solid #f6f9fd;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px #1a488e14;
+  z-index: 2;
+  text-align: center;
+}
+
+.edit-permission h2,
+.add-permission h2,
+.delete-permission h2 {
+  color: #000000;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 24px;
+  /* Increased font size for the heading */
+  font-weight: bold;
+  /* Bold heading */
+  /* Add shadow and box effect with adjusted color and alpha */
+  box-shadow: 5px 10px 20px rgba(40, 111, 219, .16);
+  padding: 5px;
+}
+
+.edit-permission label,
+.add-permission label,
+.delete-permission label {
+  display: inline-block;
+  width: 40%;
+  /* Adjust the width of the label */
+  text-align: center;
+  margin-right: 5%;
+}
+
+.edit-permission input,
+.add-permission input,
+.delete-permission input {
+  width: 150px;
+  /* Set a fixed width for the input field */
+  padding: 6px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px #1a488e14;
+  border: 1px solid #f6f9fd;
+  font-size: 13px;
+  text-decoration: none;
+  color: #6b6666f1;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+.edit-permission select,
+.add-permission select,
+.delete-permission select {
+  width: 150px;
+  /* Set the same fixed width for the select dropdown */
+  padding: 6px;
+  border-radius: 6px;
+  background-color: #fff;
+  box-shadow: 0 8px 16px #1a488e14;
+  border: 1px solid #f6f9fd;
+  font-size: 13px;
+  text-decoration: none;
+  color: #6b6666f1;
+  box-sizing: border-box;
+  display: inline-block;
+}
+
+
+.edit-permission .form-row,
+.add-permission .form-row,
+.delete-permission .form-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* Align items vertically in the flex container */
+  margin-bottom: 10px;
+  /* Adjust margin as needed */
+}
+
+.edit-permission button,
+.add-permission button,
+.delete-permission button {
+  width: 35%;
+  /* Adjusted width for buttons */
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  margin-top: 10px;
+  /* Provide space between buttons */
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+.edit-permission button#save-button,
+.add-permission button#add-button,
+.delete-permission button#delete-button {
+  background: rgb(22, 22, 22);
+  color: white;
+  margin-right: 7%;
+  margin-left: 5%;
+}
+
+.edit-permission button#cancel-button,
+.add-permission button#cancel-add-button,
+.delete-permission button#cancel-delete-button {
+  background: rgb(22, 22, 22);
+  color: white;
+  width: 35%;
+  padding: 6px;
+  margin-top: 10px;
+}
+
+
+.hidden-value {
+  display: none;
+}
+
+.add-perm-button {
+  background: rgb(22, 22, 22);
+  color: white;
+  border: 1px solid #000000;
+  outline: none;
+  padding: 6px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 85%;
+  margin-top: -2.5%;
+  position: absolute;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+}
+
+.action-icon {
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 93%;
+  margin-top: -2.5%;
+  position: absolute;
+  color: #000000;
+  /* Edit icon color */
+
+}
+
+.icon {
+  color: #030303;
+  fill: #030303;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+
+
+}
+
+.icon2 {
+  color: #030303;
+  fill: #030303;
+  font-size: 30px;
+  width: 30px;
+  height: 30px;
+  margin-left: 150%;
+}

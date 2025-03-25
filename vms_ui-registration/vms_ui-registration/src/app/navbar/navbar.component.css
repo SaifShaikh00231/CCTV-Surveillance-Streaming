@@ -1,0 +1,504 @@
+@import url('../../../node_modules/@angular/material/prebuilt-themes/purple-green.css');
+
+
+
+
+
+@font-face {
+  font-family: 'Gelion';
+  src: url('https://app.uizard.io/fonts/Gelion-Medium.eot?cache=2024-02-16-10-28-39');
+  src: url('https://app.uizard.io/fonts/Gelion-Medium.eot?cache=2024-02-16-10-28-39#iefix') format('embedded-opentype'),
+    url('https://app.uizard.iohttps://app.uizard.io/fonts/Gelion-Medium.woff?cache=2024-02-16-10-28-39?cache=2024-02-16-10-28-39') format('woff2'),
+    url('/fonts/Gelion-Medium.woff?cache=2024-02-16-10-28-39') format('woff'),
+    url('https://app.uizard.io/fonts/Gelion-Medium.ttf?cache=2024-02-16-10-28-39') format('truetype'),
+    url('https://app.uizard.io/fonts/Gelion-Medium.svg?cache=2024-02-16-10-28-39#Gelion-Medium') format('svg');
+  font-weight: 500;
+  font-style: normal;
+}
+
+
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+body {
+  font-family: "Karla", sans-serif !important;
+  zoom: 1.25;
+
+}
+
+.navbar {
+  background-color: #ddd;
+  overflow: hidden;
+  width: 100%;
+  height: 64px;
+  position: fixed;
+  /* Change to fixed positioning */
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.5s ease-in-out, box-shadow 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+}
+
+.navbar img.logo {
+  position: relative;
+  margin-top: 0%;
+  left: 0;
+  height: 60px; /* Adjust the height as needed */
+  width: 80px;
+  border-radius: 100%;
+  cursor: pointer;
+  color: #000000;
+
+}
+
+
+
+.navbar h1 {
+  color: white;
+  padding: 15px;
+  margin: 0;
+}
+
+span {
+  font-size: 24px;
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+  display: inline-block;
+  width: 0px;
+  overflow: hidden;
+  vertical-align: middle;
+  transition: 1s ease-in-out;
+}
+
+h3:hover span:nth-child(1) {
+  width: 55px;
+  overflow: hidden;
+}
+
+h3:hover span:nth-child(2) {
+  width: 130px;
+  overflow: hidden;
+}
+
+h3:hover span:nth-child(3) {
+  width: 120px;
+  overflow: hidden;
+}
+
+h3 {
+  font-size: 1.9em;
+  color: #33b5e5;
+  cursor: pointer;
+  margin-top: 20px;
+  margin-left: 3%;
+  text-shadow: 0 5px 5px rgba(255, 255, 255, 0.5);
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+}
+
+
+
+.navbtn {
+  background-color: rgb(22, 22, 22);
+  font-family: Gelion, Helvetica, "Helvetica Neue", Arial;
+
+  color: rgb(60, 145, 184);
+  padding: 8px 1px;
+  font-size: 25x;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  left: 28%;
+}
+
+.logout-link {
+  color: rgb(0, 0, 0);
+  /* Change the color on hover */
+  font-size: 25px;
+  text-decoration: none;
+  position: absolute;
+
+  font-size: 24px;
+  padding: 5px 10px;
+  transition: .5s;
+  right: 5%;
+  border-radius: 10px;
+}
+
+.logout-link:hover {
+  color: #fff;
+  /* Change the color on hover */
+
+  transition-delay: .1s;
+}
+
+.logout-link i {
+  margin-left: 5px;
+}
+
+.sidebar.close{
+  width: 50px;
+}
+header{
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.menu li{
+  height: 50px;
+  width: 100px;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+
+  justify-content: space-between;
+}
+.menu li i{
+  height: 100%;
+  padding-right: 10px;
+  padding-left: 8px;
+  margin-top: 5px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: #ccc;
+}
+li span{
+  font-size: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 1;
+  transition: .3s;
+  color: rgb(3, 3, 3);
+  padding-left: 5px;
+  
+}
+.sidebar.close .text,.sidebar.close .role,.sidebar.close .name{
+  opacity: 0;
+}
+.sidebar .menu{
+  margin-top: -30px;
+
+}
+
+
+li a{
+  list-style: none;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  height: 80%;
+  width: 210px;
+   min-width: 50px;
+  margin-left: -28%;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 1s ease;
+}
+.sidebar:not(.close) li a:hover{
+  background-color: #fff;
+
+
+}
+
+.sidebar:not(.close) li a:hover .icon,
+.sidebar:not(.close) li a:hover .text,.sidebar:not(.close) li a:hover .role,.sidebar:not(.close) li a:hover .name{
+
+  color: #000000;
+  width: 100%;
+  
+}
+
+.sidebar.close li a:hover .icon {
+  background-color: #fff;
+  padding: 5px 5px;
+
+}
+
+.sidebar:not(.close) li a:hover .icon1,
+.sidebar:not(.close) li a:hover .text
+
+{
+  color: #000000;
+  width: 24px;
+  
+  
+}
+
+.sidebar.close li a:hover .icon1 {
+  background-color: #fff;
+  padding: 5px 5px;
+  
+
+}
+
+
+.sidebar.close li a:hover .icon2 {
+  background-color: #fff;
+  padding: 5px 8px;
+  padding-right: 3px;
+}
+
+
+
+
+
+
+
+
+
+span.text,span.role,span.name{
+  overflow: visible; /* Hide overflowing content */
+  
+  
+}
+
+
+
+
+.sidebar {
+  position: fixed;
+  top: 65px; /* Adjust the top margin */
+  left: 0%;
+  height: 100%;
+  width: 150px;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  background-color: #ddd;
+  border: 1px solid #f6f9fd;
+  border-radius: 0px;
+  box-shadow: 5px 4px 6px #f5ecec;
+  
+}
+
+.dropdown-content4 {
+  display: none;
+  position: fixed;
+  color: rgb(22, 22, 22);
+  background-color: #f9f9f9;
+  max-width: 135px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  margin-left: 9%;
+  margin-top: 0%;
+  cursor: pointer;
+
+
+}
+
+.dropdown-content4 a {
+  color: black;
+  padding: 12px;
+  text-decoration: none;
+  display: block;
+  max-width: 100px;
+justify-content: center;
+text-align: center;
+align-items: center;
+  
+
+}
+
+
+.dropdown-content4:hover {
+  background-color: #ddd;
+  min-width: 135px;
+
+}
+.dropdown:hover .dropdown-content4 {
+  display: block;
+
+}
+.sidebar.close .toggle {
+  transform: translateY(-50%) rotate(0deg) !important;
+}
+
+
+
+.sidebar header .toggle{
+  position: absolute;
+  top: 7%;
+  right: -15px;
+  transform: translateY(-50%) rotate(180deg);
+  height: 25px;
+  width: 25px;
+  background-color: #fff;
+  box-shadow: 3px 2px 3px #353333;
+
+  
+  color: rgb(3, 3, 3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  cursor: pointer;
+  transition: all 0.3s ease;;
+}
+/* Style for the battery icon */
+/* Style for the battery icon */
+.battery-label {
+  color: rgb(0, 0, 0);
+  font-size: 13px; /* Adjust font size as needed */
+  left: 88.5%;
+  position: fixed;
+  font-weight: 700;
+  margin-top: 1%;
+
+
+}
+
+.battery-icon {
+  position: fixed;
+  color: rgb(0, 0, 0);
+  font-size: 30px; /* Adjust icon size as needed */
+  left: 86%;
+  margin-top: 0%;
+  
+   
+}
+
+.card-content {
+  font-size: 14px;
+  margin-top: -1.2%;
+ left: 72%;
+ position: fixed;
+ color: rgb(0, 0, 0);
+font-weight: 700;
+}
+
+
+.sidebar:not(.close) li a:hover .name,.sidebar:not(.close) li a:hover .role
+
+
+{
+  color: #000000;
+  width: 0px;
+  display: block; /* Display each name on a new line */
+
+  
+}
+.name {
+  display: block; /* Display each name on a new line */
+  padding-bottom: 20px;
+  justify-content: center;
+text-align: center;
+align-items: center;
+margin-left: 2%;
+  
+}
+
+.role {
+  display: block; /* Display each role name on a new line */
+  margin-top: 20px; /* Add some space between name and role */
+  justify-content: center;
+text-align: center;
+align-items: center;
+margin-left: -6%;
+
+  
+}
+.sidebar.close .text {
+  pointer-events:none; /* Enable pointer events for the closed sidebar */
+}
+
+
+/* Add media queries for responsiveness */
+@media screen and (max-width: 768px) {
+  /* Styles for tablets */
+  /* Adjust navbar height and font size for smaller screens */
+  .navbar {
+    height: 50px;
+  }
+  
+  .navbar h1 {
+    font-size: 14px;
+  }
+  .sidebar {
+    position: fixed;
+    top: 50px; /* Adjust the top margin */
+    left: 0%;
+    height: 100%;
+    width: 150px;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    background-color: #ddd;
+    border: 1px solid #f6f9fd;
+    border-radius: 0px;
+    box-shadow: 5px 4px 6px #f5ecec;
+    
+  }
+  .card-content {
+    font-size: 10px;
+    margin-top: -2.5%;
+   left: 50%;
+   position: fixed;
+   color: rgb(0, 0, 0);
+  font-weight: 700;
+  }
+  .logout-link {
+    color: rgb(0, 0, 0);
+    /* Change the color on hover */
+    font-size: 25px;
+    text-decoration: none;
+    position: absolute;
+  
+    font-size: 24px;
+    padding: 5px 10px;
+    transition: .5s;
+    right: 0%;
+    border-radius: 10px;
+  }
+  .battery-icon {
+    position: fixed;
+    color: rgb(0, 0, 0);
+    font-size: 30px; /* Adjust icon size as needed */
+    left: 81%;
+    margin-top: 0%;
+    
+     
+  }
+  .battery-label {
+    color: rgb(0, 0, 0);
+    font-size: 13px; /* Adjust font size as needed */
+    left: 87%;
+    position: fixed;
+    font-weight: 700;
+    margin-top: 1%;
+  
+  
+  }
+
+  
+}
+
+@media screen and (max-width: 576px) {
+  /* Styles for mobile devices */
+  /* Adjust navbar height and font size for smaller screens */
+  .navbar {
+    height: 40px;
+  }
+
+  
+  .navbar h1 {
+    font-size: 12px;
+  }
+}

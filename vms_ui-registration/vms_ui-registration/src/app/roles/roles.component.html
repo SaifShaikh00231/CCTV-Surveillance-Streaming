@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Roles</title>
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <app-settings></app-settings>
+
+    <div class="overview">
+        <!-- camera.component.html -->
+        <div *ngIf="showEditForm" class="edit-form">
+            <h2>Edit Role name</h2>
+            <form (submit)="onEditSubmit()">
+
+
+                <div class="form-row">
+                    <label for="new_role_name">Role</label>
+                    <input type="text" id="new_role_name" name="new_role_name" [(ngModel)]="newRoleName">
+                </div>
+
+                <div class="form-row">
+                    <label for="is_deleted" style="margin-left: 0%;">Delete Status</label>
+                    <select id="is_deleted" name="is_deleted" [(ngModel)]="selectedRoles[2]" style="width: 65%">
+                        <option value="True">true</option>
+                        <option value="False">false</option>
+                    </select>
+                </div>
+
+
+
+                <div class="button-container">
+                    <button type="submit" id="save-button">Save</button>
+                    <button type="button" (click)="cancelEdit()" id="cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Add Role Form -->
+        <div *ngIf="showAddForm" class="add-form">
+            <h2>Add Role</h2>
+            <form (submit)="onAddSubmit()">
+                <div class="form-row">
+                    <label for="new_role_name">Role</label>
+                    <input type="text" id="new_role_name" name="new_role_name" [(ngModel)]="addRoleform.role_name">
+                </div>
+                <div class="form-row">
+                    <label for="is_deleted" style="margin-left: 0%;">Status</label>
+                    <select id="is_deleted" name="is_deleted" [(ngModel)]="addRoleform.is_deleted" style="width: 65%;">
+                        <option [ngValue]="true">True</option>
+                        <option [ngValue]="false">False</option>
+                    </select>
+                    
+                </div>
+                <!-- Add other form fields as needed -->
+
+                <div class="button-container">
+                    <button type="submit" id="add-role-button">Add Role</button>
+                    <button type="button" (click)="cancelAdd()" id="cancel-add-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Inside your <body> tag -->
+        <div class="data-table  role-list" id=" role-list">
+
+            <h2> Registered Roles List
+                <div class="search-bar">
+                    <input #searchInput type="text" placeholder="Search..." [(ngModel)]="searchText" (input)="search()">
+                    <i class="fas fa-search"></i> <!-- Font Awesome search icon -->
+                    <div class="search-results" *ngIf="searchText">
+                        <div *ngFor="let result of searchResults">
+                            <span [innerHTML]="result"></span>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="add-role-button" (click)="addRole()" class="add-role-button">
+                    <i class="fas fa-plus" style="margin-right: 10px;margin-bottom: 3px;"> </i> Add Role </button>
+
+            </h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Role</th>
+                        <th>Created By</th>
+                        <th>Updated By</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <ng-container *ngFor="let role of roles">
+                        <tr>
+                            <td>{{ role.role_name || '---' }}</td>
+                            <td>{{ role.created_by || '---' }}</td>
+                            <td>{{ role.updated_by || '---' }}</td>
+                            <td class="hidden-value">{{ role.is_deleted}}</td>
+                            <td class="button-cell">
+                                <span class="action-icon" (click)="startEditing(role)">
+                                    <svg class="icon2" viewBox="0 0 512 512">
+                                        <path
+                                            d="M490.3 40.4C512.2 62.27 512.2 97.73 490.3 119.6L460.3 149.7L362.3 51.72L392.4 21.66C414.3-.2135 449.7-.2135 471.6 21.66L490.3 40.4zM172.4 241.7L339.7 74.34L437.7 172.3L270.3 339.6C264.2 345.8 256.7 350.4 248.4 353.2L159.6 382.8C150.1 385.6 141.5 383.4 135 376.1C128.6 370.5 126.4 361 129.2 352.4L158.8 263.6C161.6 255.3 166.2 247.8 172.4 241.7V241.7zM192 63.1C209.7 63.1 224 78.33 224 95.1C224 113.7 209.7 127.1 192 127.1H96C78.33 127.1 64 142.3 64 159.1V416C64 433.7 78.33 448 96 448H352C369.7 448 384 433.7 384 416V319.1C384 302.3 398.3 287.1 416 287.1C433.7 287.1 448 302.3 448 319.1V416C448 469 405 512 352 512H96C42.98 512 0 469 0 416V159.1C0 106.1 42.98 63.1 96 63.1H192z">
+                                        </path>
+                                    </svg>
+
+                                </span>
+
+
+
+                                <span class="action-icon" (click)="deleteRoles(role)">
+                                    <svg class="icon" viewBox="0 0 24 24">
+                                        <path d="M0 0h24v24H0z" fill="none"></path>
+                                        <path
+                                            d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z">
+                                        </path>
+                                    </svg>
+
+                                </span>
+                            </td>
+                        </tr>
+                    </ng-container>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>

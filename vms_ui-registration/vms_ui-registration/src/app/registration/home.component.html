@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>VMS</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Add the jQuery UI stylesheet -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<body>
+    <app-navbar></app-navbar>
+    <div class="main">
+        <form action="#" method="POST" (submit)="login($event)">
+
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form action="#" method="POST">
+                <label for="chk" aria-hidden="true">Sign in</label>
+                <div class="input-group">
+                    <input type="text" name="identifier" [(ngModel)]="loginForm.identifier"
+                        placeholder="Username or Phone number" required="">
+                    <i class="material-icons">perm_phone_msg</i>
+                </div>
+          
+             
+                <div class="input-group password-input">
+                    <input
+                        type="{{ showPassword ? 'text' : 'password' }}"
+                        name="password"
+                        [(ngModel)]="loginForm.password"
+                        placeholder="Password"
+                        required
+                    />
+                    <i class="material-icons">lock</i>
+                    <i class="material-icons eye-icon" (click)="togglePasswordVisibility()">
+                        {{ showPassword ? 'visibility' : 'visibility_off' }}
+                    </i>
+                </div>
+            </form>
+    </div>
+        <button (click)="login($event)">Login</button>
+    </form>
+</div>
+       
+
+</body>
+
+</html>
