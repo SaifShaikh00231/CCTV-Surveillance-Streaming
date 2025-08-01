@@ -18,6 +18,8 @@ from ORM_db import db
 
 from session_manager import session_manager_bp  # Import the session_manager blueprint
 import re
+import os
+from dotenv import load_dotenv
 
 
 app = Flask(__name__)
@@ -46,7 +48,8 @@ CORS(
 app.secret_key = "cairocoders-ednalan"
 
 app.config["SESSION_TYPE"] = "filesystem"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:5432/vms'
+load_dotenv()
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
 
 
 # Mount the individual blueprints on the main app
@@ -66,7 +69,13 @@ app.register_blueprint(permissions_bp)
 app.register_blueprint(camera_recording_bp)
 
 db.init_app(app)
+@app.route("/")
+def index():
+    return "✅ VMS Backend is running"
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=8000)
+
+
     

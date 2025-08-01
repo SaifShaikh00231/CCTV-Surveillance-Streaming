@@ -1,14 +1,19 @@
 from flask import Flask
-from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env
+load_dotenv()
 
 app = Flask(__name__)
 app.secret_key = "cairocoders-ednalan"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost5432/vms'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")  # ✅ From .env
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy()
-
-
+db.init_app(app)
 
 class UserRole(db.Model):
     __tablename__ = 'users_roles'
@@ -184,3 +189,8 @@ class Status(db.Model):
     __tablename__ = 'status'
 
     status_name = db.Column(db.String(50), primary_key=True)
+if __name__ == '__main__':
+    app.app_context().push()
+    db.create_all()
+    print("✅ Tables created successfully on Render PostgreSQL!")
+   

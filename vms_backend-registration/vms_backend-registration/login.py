@@ -1,19 +1,32 @@
-from flask import Flask, request, session, jsonify, Blueprint, g, redirect, url_for
+from flask import Flask, request, session, jsonify, Blueprint
 from datetime import datetime
 from werkzeug.security import check_password_hash
-import psycopg2
 from flask_sqlalchemy import SQLAlchemy
-
 from flask_login import logout_user, LoginManager
 from session_manager import set_session, get_session_email, clear_session
+from ORM_db import User, UserRole, RolesPermissions, db
 
+import os
+from dotenv import load_dotenv
+
+# ✅ Load environment variables from .env
+load_dotenv()
+
+# ✅ Setup Flask app
 app = Flask(__name__)
 app.secret_key = "cairocoders-ednalan"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:root@localhost:1024/VMS'
 
+# ✅ Configure database using .env
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv("DATABASE_URL")
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# ✅ Initialize DB
+db.init_app(app)
+
+# ✅ Define blueprint
 login_bp = Blueprint("login_app", __name__)
-from ORM_db import User,UserRole,RolesPermissions,db
 
+# ✅ Routes
 @login_bp.route("/login/", methods=["POST"])
 def login():
     try:
@@ -27,42 +40,34 @@ def login():
             session["loggedin"] = True
             session["username"] = user.username
 
-            # Fetch the user's role from users_roles table
+            # Get user role
             user_role = UserRole.query.filter_by(username=user.username).first()
 
-            # Fetch permissions associated with the user's role
+            # Get permissions
             permissions = []
             if user_role:
                 role_name = user_role.role_name
                 role_permissions = RolesPermissions.query.filter_by(role_name=role_name).all()
                 permissions = [permission.permission_name for permission in role_permissions]
 
-            # Store permissions in the session
             session["permissions"] = permissions
 
             user.last_login_time = datetime.now()
             db.session.commit()
 
-            return jsonify(
-                {
-                    "status": "success",
-                    "message": "Login successful",
-                    "username": user.username,
-                    "permissions": permissions,
-                }
-            )
+            return jsonify({
+                "status": "success",
+                "message": "Login successful",
+                "username": user.username,
+                "permissions": permissions,
+            })
         else:
-            return jsonify(
-                {"status": "error", "message": "Incorrect Email/password or account is not active"}
-            )
+            return jsonify({
+                "status": "error",
+                "message": "Incorrect Email/password or account is not active"
+            })
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
-
-
-
-
-
-
 
 
 @login_bp.route("/logout/", methods=["POST"])
@@ -71,25 +76,16 @@ def logout():
         user_username = request.headers.get("Session-Username", None)
 
         if not user_username:
-            return (
-                jsonify(
-                    {
-                        "status": "error",
-                        "message": "Username not found in the session",
-                    }
-                ),
-                400,
-            )
+            return jsonify({"status": "error", "message": "Username not found in the session"}), 400
 
-        else:
-            user = User.query.filter_by(username=user_username).first()
-            if user:
-                user.last_logout_time = datetime.now()
-                db.session.commit()
+        user = User.query.filter_by(username=user_username).first()
+        if user:
+            user.last_logout_time = datetime.now()
+            db.session.commit()
 
-            session.clear()
+        session.clear()
 
-            return jsonify({"status": "success", "message": "Logout successful"})
+        return jsonify({"status": "success", "message": "Logout successful"})
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)})
 
@@ -100,16 +96,13 @@ def get_permissions():
         permissions = session["permissions"]
         return jsonify({"status": "success", "permissions": permissions})
     else:
-        return jsonify(
-            {"status": "error", "message": "Permissions not found in session"}
-        )
+        return jsonify({"status": "error", "message": "Permissions not found in session"})
 
-# Register the blueprint
+
+# ✅ Register blueprint and run app
 app.register_blueprint(login_bp)
 
-# Initialize SQLAlchemy after app is created
-
-
-# Run the Flask application
 if __name__ == "__main__":
+    with app.app_context():
+        db.create_all()  # Optional: ensures tables exist
     app.run(debug=True)

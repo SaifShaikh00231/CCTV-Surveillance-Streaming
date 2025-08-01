@@ -13,8 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/video-management-system",
+            "outputPath": "dist/CCTV-Surveillance-Streaming",
             "index": "src/index.html",
+            "baseHref": "/CCTV-Surveillance-Streaming/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"
@@ -41,13 +42,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "800kb",
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumWarning": "150kb",
+                  "maximumError": "200kb"
                 }
               ],
               "outputHashing": "all"
