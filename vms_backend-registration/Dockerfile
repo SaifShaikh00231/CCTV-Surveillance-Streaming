@@ -4,7 +4,7 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /app
 
-# Install system-level dependencies (for Rust, dlib, rembg, etc.)
+# Install system-level dependencies (Rust and build tools)
 RUN apt-get update && apt-get install -y \
     build-essential \
     cmake \
@@ -15,16 +15,20 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Set environment variables for Rust builds (important!)
+ENV CARGO_HOME=/tmp/cargo
+ENV CRYPTOGRAPHY_DONT_BUILD_RUST=1
+
+# Upgrade pip and install Python dependencies
 COPY requirements.txt .
 RUN pip install --upgrade pip setuptools wheel
 RUN pip install -r requirements.txt
 
-# Copy your application code
+# Copy application source code
 COPY . .
 
-# Expose the port (adjust if needed)
+# Expose the port your app runs on
 EXPOSE 8000
 
-# Run your app (adjust to your app's entry point)
+# Default command to run your app
 CMD ["python", "app.py"]
