@@ -83,7 +83,7 @@ def forgot_password():
         get_db().commit()
 
         # Construct the reset link with the reset token
-        reset_link = f"http://localhost:4200/reset-password?token={reset_token}"
+        reset_link = f"https://saifshaikh00231.github.io/reset-password?token={reset_token}"
 
         # Send the password reset email
         send_password_reset_email(email, reset_link)

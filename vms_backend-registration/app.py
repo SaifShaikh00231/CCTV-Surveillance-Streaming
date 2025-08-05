@@ -26,7 +26,7 @@ app = Flask(__name__)
 CORS(
     app,
     resources={
-        r"/*": {"origins": "http://localhost:4200", "supports_credentials": True}
+        r"/*": {"origins": "https://saifshaikh00231.github.io", "supports_credentials": True}
     },
     allow_headers=[
         "Content-Type",
