@@ -185,7 +185,7 @@ async def fetch_system_resources():
 def get_system_resources():
     try:
         cpu_percent, ram_percent, cpu_temp = asyncio.run(fetch_system_resources())
-        logging.debug(f"Fetched System Resources - CPU Percent: {cpu_percent}, RAM Percent: {ram_percent}, CPU Temperature: {cpu_temp}")
+        # logging.debug(f"Fetched System Resources - CPU Percent: {cpu_percent}, RAM Percent: {ram_percent}, CPU Temperature: {cpu_temp}")
         return jsonify({
             'cpu_percent': cpu_percent,
             'ram_percent': ram_percent,

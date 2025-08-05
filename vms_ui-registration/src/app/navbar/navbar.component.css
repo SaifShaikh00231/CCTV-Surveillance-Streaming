@@ -358,10 +358,10 @@ align-items: center;
 .battery-label {
   color: rgb(0, 0, 0);
   font-size: 13px; /* Adjust font size as needed */
-  left: 88.5%;
+  left: 90%;
   position: fixed;
   font-weight: 700;
-  margin-top: 1%;
+  margin-top: 0.5%;
 
 
 }
@@ -371,7 +371,8 @@ align-items: center;
   color: rgb(0, 0, 0);
   font-size: 30px; /* Adjust icon size as needed */
   left: 86%;
-  margin-top: 0%;
+  /* margin-top: 0%; */
+  margin: bottom 90%;;
   
    
 }
@@ -468,10 +469,10 @@ margin-left: -6%;
     border-radius: 10px;
   }
   .battery-icon {
-    position: fixed;
+    /* position: fixed; */
     color: rgb(0, 0, 0);
     font-size: 30px; /* Adjust icon size as needed */
-    left: 81%;
+    left: 8%;
     margin-top: 0%;
     
      
@@ -479,8 +480,8 @@ margin-left: -6%;
   .battery-label {
     color: rgb(0, 0, 0);
     font-size: 13px; /* Adjust font size as needed */
-    left: 87%;
-    position: fixed;
+    left: 8%;
+    /* position: fixed; */
     font-weight: 700;
     margin-top: 1%;
   

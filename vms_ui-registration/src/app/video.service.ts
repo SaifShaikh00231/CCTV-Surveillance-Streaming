@@ -6,7 +6,7 @@
     providedIn: 'root'
   })
   export class VideoService {
-    private videoUrl = 'http://localhost:8007/video_feed';
+    private videoUrl = '8007/video_feed';
     private videoSource = new BehaviorSubject<any>(null);
 
     constructor(private http: HttpClient) {}

@@ -23,7 +23,6 @@ class UserRole(db.Model):
     role_name = db.Column(db.String(255), nullable=False)
     created_by = db.Column(db.String(255), nullable=False)
 
-
     def __repr__(self):
         return f"<UserRole {self.username} - {self.role_name}>"
 
@@ -40,15 +39,14 @@ class User(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
     last_login_time = db.Column(db.DateTime, default=datetime.utcnow)
     last_logout_time = db.Column(db.DateTime, default=datetime.utcnow)
-    reset_token = db.Column(db.String(255), nullable=False)
-    updated_by = db.Column(db.String(50), nullable=False)
+    reset_token = db.Column(db.String(255), nullable=False, default="")  # ✅ FIXED
+    updated_by = db.Column(db.String(50), nullable=False, default="")    # ✅ FIXED
     created_by = db.Column(db.String(50), nullable=False)
     username = db.Column(db.String(20), nullable=False, unique=True, primary_key=True)
     roles = db.relationship("UserRole", backref="user", lazy="dynamic")
 
     def __repr__(self):
         return f"<User {self.username}>"
-
 
 class Camera(db.Model):
     __tablename__ = 'camera'
@@ -108,6 +106,7 @@ class CameraRecording(db.Model):
     camera_type = db.Column(db.String, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     created_by = db.Column(db.String(100))
+
 class CameraRecordingSchedule(db.Model):
     __tablename__ = 'camera_recording_schedule'
 
@@ -189,8 +188,9 @@ class Status(db.Model):
     __tablename__ = 'status'
 
     status_name = db.Column(db.String(50), primary_key=True)
+
+# ✅ Create tables when running directly
 if __name__ == '__main__':
     app.app_context().push()
     db.create_all()
     print("✅ Tables created successfully on Render PostgreSQL!")
-   
