@@ -64,7 +64,7 @@ export class ApiService {
   removePermission(permissionName: string) {
     throw new Error('Method not implemented.');
   }
-  private apiUrl = 'http://127.0.0.1:8000'; // Update with your Flask API URL
+  private apiUrl = 'https://cctv-backend-login.onrender.com'; // Update with your Flask API URL
 
   constructor(private http: HttpClient) { }
 
